@@ -249,33 +249,20 @@ export const SocialMediaCustom = [
 
 export const HeaderItems = [
   {
-    name: "Trang chủ",
-    link: "",
+    label: "Mua hàng",
+    value: "mua-hang",
   },
   {
-    name: "Giới thiệu",
-    link: "gioi-thieu",
+    label: "Khuyến mãi",
+    value: "khuyen-mai",
   },
   {
-    name: "Sản phẩm",
-    link: "san-pham/tat-ca-san-pham?pageNumber=1",
-  },
-
-  {
-    name: "Quy trình sản xuất",
-    link: "quy-trinh-san-xuat",
+    label: "Thực đơn",
+    value: "thuc-don",
   },
   {
-    name: "Hợp tác",
-    link: "hop-tac",
-  },
-  {
-    name: "Tin tức & Sự kiện",
-    link: "tin-tuc-su-kien",
-  },
-  {
-    name: "Liên hệ",
-    link: "lien-he",
+    label: "Blog",
+    value: "blog",
   },
 ];
 
@@ -308,102 +295,96 @@ export const ToolsTipsSocialMediaItems = [
 
 /*<-------------------------------------------------------------------------------------------------------------------- CUSTOM --------------------------------------------------------------------------------------------------------------------> */
 
-export const TypePostItems = [
-  {
-    label: "Tin tức & Sự kiện",
-    value: "news",
-  },
-  {
-    label: "Hợp tác",
-    value: "cooperate",
-  },
-  {
-    label: "Quy trình sản xuất",
-    value: "process",
-  },
-  {
-    label: "Chính sách",
-    value: "policy",
-  },
-];
-
 export const TypeProductItems = [
   {
-    label: "Teraco",
-    value: "teraco",
+    label: "Hàng Đông Lạnh",
+    value: "hang-dong-lanh",
+    image:
+      "https://firebasestorage.googleapis.com/v0/b/taphoa-605ab.appspot.com/o/category_20210729151250_0.png?alt=media&token=797e56cf-afbf-4cea-a9e7-a8e131049a41",
   },
   {
-    label: "SRM",
-    value: "srm",
+    label: "Hải Sản Tươi Sống",
+    value: "hai-san-tuoi-song",
+    image:
+      "https://firebasestorage.googleapis.com/v0/b/taphoa-605ab.appspot.com/o/category_20210729151303_0.png?alt=media&token=b9d15971-d65b-4209-bf3e-4f9221e01594",
   },
   {
-    label: "Dothanh",
-    value: "dothanh",
+    label: "Thực phẩm Việt Nam",
+    value: "thuc-pham-viet-nam",
+    image:
+      "https://firebasestorage.googleapis.com/v0/b/taphoa-605ab.appspot.com/o/category_20210729151315_0.png?alt=media&token=70925ed8-b2fd-41fc-8f82-cfcb715da692",
   },
   {
-    label: "Tata",
-    value: "tata",
+    label: "Rau Củ Quả",
+    value: "rau-cu-qua",
+    image:
+      "https://firebasestorage.googleapis.com/v0/b/taphoa-605ab.appspot.com/o/category_20210729151331_0.png?alt=media&token=03174078-0864-4c6b-b6e1-8612985e3b59",
   },
   {
-    label: "Kenbo",
-    value: "kenbo",
+    label: "Đồ Ăn Vặt",
+    value: "do-an-vat",
+    image:
+      "https://firebasestorage.googleapis.com/v0/b/taphoa-605ab.appspot.com/o/category_20210729151331_0.png?alt=media&token=03174078-0864-4c6b-b6e1-8612985e3b59",
   },
   {
-    label: "TMT",
-    value: "tmt",
+    label: "Nước Uống",
+    value: "nuoc-uong",
+    image:
+      "https://firebasestorage.googleapis.com/v0/b/taphoa-605ab.appspot.com/o/category_20210729151342_0.png?alt=media&token=8792cda1-7f18-4707-b213-fc1f2c9046f7",
+  },
+  {
+    label: "Thực Phẩm Hàng Thái Nhật",
+    value: "thuc-pham-hang-thai-nhat",
+    image:
+      "https://firebasestorage.googleapis.com/v0/b/taphoa-605ab.appspot.com/o/category_20210729151408_0.png?alt=media&token=1eaddc53-8e6f-4199-8a92-2dfa83605197",
+  },
+  {
+    label: "Tiện Ích Gia Đình",
+    value: "tien-ich-gia-dinh",
+    image:
+      "https://firebasestorage.googleapis.com/v0/b/taphoa-605ab.appspot.com/o/category_20210729151420_0.png?alt=media&token=8c81d8d3-b549-4492-8c8b-48cd92c9aa56",
   },
 ];
 
 export const PolicyItems = [
   {
-    title: "QUI ĐỊNH HÌNH THỨC THANH TOÁN",
-    content: "Nội dung bài viết 1",
-    url: "qui-dinh-hinh-thuc-thanh-toan",
-    type: "policy",
-    image: "",
+    label: "Giao nhận hàng",
+    value: "giao-nhan-hang",
   },
   {
-    title: "CHÍNH SÁCH BẢO HÀNH",
-    content: "Nội dung bài viết ",
-    url: "chinh-sach-bao-hanh",
-    type: "policy",
-    image: "",
+    label: "Chính sách đổi trả",
+    value: "chinh-sach-doi-tra",
   },
   {
-    title: "CHÍNH SÁCH BẢO VỆ THÔNG TIN CÁ NHÂN",
-    content: "Nội dung bài viết ",
-    url: "chinh-sach-bao-ve-thong-tin-ca-nhan",
-    type: "policy",
-    image: "",
+    label: "Chính sách đặt hàng",
+    value: "chinh-sach-dat-hang",
   },
   {
-    title: "CHÍNH SÁCH ĐỔI TRẢ HÀNG",
-    content: "Nội dung bài viết ",
-    url: "chinh-sach-doi-tra-hang",
-    type: "policy",
-    image: "",
+    label: "Chính sách bảo mật",
+    value: "chinh-sach-bao-mat",
+  },
+];
+
+export const TopFooterItems = [
+  {
+    image:
+      "https://firebasestorage.googleapis.com/v0/b/taphoa-605ab.appspot.com/o/fresher.14f2aadd.png?alt=media&token=be56aab4-f2c5-42a8-a6d8-4b32c7109211",
+    label: "Hoàn trả không gặp rắc rối",
   },
   {
-    title: "CHÍNH SÁCH VẬN CHUYỂN",
-    content: "Nội dung bài viết ",
-    url: "chinh-sach-van-chuyen",
-    type: "policy",
-    image: "",
+    image:
+      "https://firebasestorage.googleapis.com/v0/b/taphoa-605ab.appspot.com/o/security.d7d83cc5.png?alt=media&token=8add07d2-33df-4a2c-b07a-1c983fc4b204",
+    label: "Giao dịch an toàn",
   },
   {
-    title: "",
-    content: "Nội dung bài viết ",
-    url: "",
-    type: "",
-    image: "",
+    image:
+      "https://firebasestorage.googleapis.com/v0/b/taphoa-605ab.appspot.com/o/free-ship.658704f1.png?alt=media&token=6642d93d-9c27-4113-affc-e6a02d8811b1",
+    label: "Vận chuyển cực kỳ nhanh chóng",
   },
   {
-    title:
-      'YẾN SÀO TRÍ SƠN NHẬN GIẢI "SẢN PHẨM CÔNG NGHIỆP NÔNG THÔN TIÊU BIỂU CẤP TỈNH" NĂM 2023',
-    content: "Nội dung bài viết ",
-    url: "",
-    type: "news",
-    image: "",
+    image:
+      "https://firebasestorage.googleapis.com/v0/b/taphoa-605ab.appspot.com/o/support-24-24.1848cf83.png?alt=media&token=8fe9426e-066c-4be6-b0b2-21026be68d27",
+    label: "Đảm bảo chất lượng",
   },
 ];
 
