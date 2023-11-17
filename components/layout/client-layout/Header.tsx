@@ -40,13 +40,13 @@ const Header = () => {
       </div>
       <div className="shadow-md">
         <div className="h-24 flex justify-between w-[1300px] mx-auto items-center">
-          <div className="h-24 p-3">
+          <Link href={`/`} className="h-24 p-3">
             <img
               src="https://taphoa.cz/static/media/logo2.da54755c.png"
               alt="logo"
-              className="h-full"
+              className="h-full cursor-pointer"
             />
-          </div>
+          </Link>
           <div className="flex gap-10 text-[16px] uppercase font-normal ">
             {HeaderItems.map((item: any, idx: number) => (
               <Link

@@ -250,7 +250,7 @@ export const SocialMediaCustom = [
 export const HeaderItems = [
   {
     label: "Mua hàng",
-    value: "mua-hang",
+    value: "chinh-sach-dat-hang",
   },
   {
     label: "Khuyến mãi",
