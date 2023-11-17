@@ -6,7 +6,6 @@ import {
 
 export async function getDataByPaginationProps(Collection: string) {
   const Data = await JSON.parse(JSON.stringify(await getProducts(Collection)));
-
   return Data;
 }
 

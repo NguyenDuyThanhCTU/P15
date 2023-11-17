@@ -1,6 +1,7 @@
 "use client";
 import { HeaderItems } from "@assets/item";
 import { useData } from "@context/DataProviders";
+import Link from "next/link";
 import React from "react";
 import { CiMail } from "react-icons/ci";
 import { FaSearch } from "react-icons/fa";
@@ -48,12 +49,13 @@ const Header = () => {
           </div>
           <div className="flex gap-10 text-[16px] uppercase font-normal ">
             {HeaderItems.map((item: any, idx: number) => (
-              <div
+              <Link
+                href={item.value}
                 className="cursor-pointer hover:text-red-500 duration-300"
                 key={idx}
               >
                 {item.label}
-              </div>
+              </Link>
             ))}
           </div>
           <div className="flex items-center gap-20">

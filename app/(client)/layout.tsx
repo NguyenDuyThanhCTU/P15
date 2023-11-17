@@ -16,7 +16,7 @@ const layout: React.FC<ClientLayoutProps> = ({ children }) => {
     <div className="font-LexendDeca font-extralight">
       <Header />
       <ProductTypeList />
-      <div className="mt-16">{children}</div>
+      <div className="">{children}</div>
 
       <TopFooter />
       <Footer />

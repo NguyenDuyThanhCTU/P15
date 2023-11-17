@@ -346,6 +346,29 @@ export const TypeProductItems = [
   },
 ];
 
+export const TypePostItems = [
+  {
+    label: "Bài Viết",
+    value: "News",
+  },
+  {
+    label: "Giao nhận hàng",
+    value: "Policy",
+  },
+  {
+    label: "Chính sách đổi trả",
+    value: "Policy",
+  },
+  {
+    label: "Chính sách đặt hàng",
+    value: "Policy",
+  },
+  {
+    label: "Chính sách bảo mật",
+    value: "Policy",
+  },
+];
+
 export const PolicyItems = [
   {
     label: "Giao nhận hàng",

@@ -16,6 +16,7 @@
     "diacritic": "^0.0.2",
     "encoding": "^0.1.13",
     "firebase": "^10.4.0",
+    "lottie-react": "^2.4.0",
     "moment": "^2.29.4",
     "next": "13.5.4",
     "react": "^18",

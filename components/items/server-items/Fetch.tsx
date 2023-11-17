@@ -77,6 +77,10 @@ const Fetch: React.FC = () => {
       setVideos(data?.reverse());
     });
 
+    getAllDocuments("posts").then((data: any) => {
+      setPosts(data?.reverse());
+    });
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -137,10 +141,12 @@ const Fetch: React.FC = () => {
       getProducts("products").then((data: any) => {
         setProducts(data);
       });
+      setIsRefetch("done");
     } else if (isRefetch === "CRUD posts") {
       getProducts("posts").then((data: any) => {
         setPosts(data);
       });
+      setIsRefetch("done");
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
