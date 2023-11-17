@@ -34,6 +34,7 @@ const config: Config = {
         //Custom colors
         mainblue: "#3696b4",
         mainpink: "#ac192c",
+        mainyellow: "#F2C123",
       },
 
       // custom

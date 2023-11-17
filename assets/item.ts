@@ -388,6 +388,26 @@ export const PolicyItems = [
   },
 ];
 
+export const ProductTypeItems = [
+  {
+    label: "Sản phẩm mới",
+    value: "",
+  },
+  {
+    label: "Sản phẩm nổi bật",
+    value: "",
+  },
+
+  {
+    label: "Sản phẩm bán chạy",
+    value: "",
+  },
+  {
+    label: "Sản phẩm khuyến mãi",
+    value: "",
+  },
+];
+
 export const TopFooterItems = [
   {
     image:
