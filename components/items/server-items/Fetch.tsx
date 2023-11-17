@@ -81,6 +81,9 @@ const Fetch: React.FC = () => {
       setPosts(data?.reverse());
     });
 
+    getAllDocuments("products").then((data: any) => {
+      setProducts(data?.reverse());
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
