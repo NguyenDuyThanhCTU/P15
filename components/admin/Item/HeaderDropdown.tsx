@@ -19,7 +19,7 @@ const HeaderDropDown: React.FC = () => {
             <AiOutlineProfile className="inline-block text-colortopdownBlue mr-2" />
             Hồ sơ
           </li>
-          <Link href="/login">
+          <Link href="/">
             <li className="hover:bg-purple-400  duration-300 element-dropdown text-redPrimmary py-2">
               <GiExitDoor className="inline-block  mr-2" />
               Thoát

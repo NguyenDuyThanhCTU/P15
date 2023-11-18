@@ -1,0 +1,125 @@
+"use client";
+import { useData } from "@context/DataProviders";
+import Link from "next/link";
+import React, { useEffect } from "react";
+import UserInformation from "./UserInformation";
+import UserFavorite from "./UserFavorite";
+import UserOrders from "./UserOrders";
+import UserChangePassword from "./UserChangePassword";
+
+const Account = () => {
+  const { currentUser, Accounts } = useData();
+  const [selected, setSelected] = React.useState(0);
+  const [user, setUser] = React.useState<any>(null);
+
+  const ClientOptionItems = [
+    {
+      label: "Thông tin người dùng",
+      value: "",
+      icon: "",
+    },
+    {
+      label: "Sản phẩm yêu thích",
+      value: "",
+      icon: "",
+    },
+    {
+      label: "Đơn hàng của tôi",
+      value: "",
+      icon: "",
+    },
+    {
+      label: "Đổi mật khẩu",
+      value: "",
+      icon: "",
+    },
+  ];
+  const AdminOptionItems = [
+    {
+      label: "Đến trang quản trị",
+      value: "",
+      icon: "",
+    },
+  ];
+  useEffect(() => {
+    const sort = Accounts?.filter((item: any) => item.id === currentUser.id);
+    setUser(sort[0]);
+  }, [Accounts, currentUser]);
+  return (
+    <div className="border-t my-10">
+      <div className="w-[1300px] mx-auto py-10">
+        {currentUser ? (
+          <div className="grid grid-cols-5 gap-5">
+            <div className="col-span-1 flex flex-col gap-5 border-r  h-full">
+              {(currentUser?.role === "admin"
+                ? AdminOptionItems
+                : ClientOptionItems
+              ).map((item: any, idx: number) => (
+                <div
+                  key={idx}
+                  onClick={() => setSelected(idx)}
+                  className="cursor-pointer  hover:scale-105 duration-300 font-light hover:text-mainyellow"
+                >
+                  {item.label}
+                </div>
+              ))}
+            </div>
+            <div className="col-span-4">
+              {currentUser?.role === "admin" ? (
+                <>
+                  <div className="flex">
+                    <Link
+                      href={`/admin`}
+                      className="py-2 px-10 rounded-full cursor-pointer text-[24px] font-normal text-white bg-mainyellow border-mainyellow duration-300 hover:bg-orange-500 hover:border-orange-500"
+                    >
+                      {" "}
+                      Đến trang quản trị
+                    </Link>
+                  </div>
+                </>
+              ) : (
+                <div className="w-full flex justify-center">
+                  {selected === 0 ? (
+                    <>
+                      <UserInformation user={user} />
+                    </>
+                  ) : selected === 1 ? (
+                    <>
+                      <UserFavorite />
+                    </>
+                  ) : selected === 2 ? (
+                    <>
+                      <UserOrders />
+                    </>
+                  ) : (
+                    <>
+                      <UserChangePassword user={user} />
+                    </>
+                  )}
+                </div>
+              )}
+            </div>
+          </div>
+        ) : (
+          <div className="h-[50vh] flex items-center gap-2 flex-col justify-center">
+            {" "}
+            <h2 className="font-light  text-[20px] ">
+              Bạn chưa đăng nhập?
+            </h2>{" "}
+            <div className="flex">
+              <Link
+                href={`/dang-nhap`}
+                className="py-2 px-10 rounded-full cursor-pointer text-[24px] font-normal text-white bg-mainyellow border-mainyellow duration-300 hover:bg-orange-500 hover:border-orange-500"
+              >
+                {" "}
+                Đến trang đăng nhập
+              </Link>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default Account;
