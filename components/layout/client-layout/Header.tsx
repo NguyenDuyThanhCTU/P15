@@ -1,6 +1,7 @@
 "use client";
 import { HeaderItems } from "@assets/item";
 import { useData } from "@context/DataProviders";
+import { useStateProvider } from "@context/StateProvider";
 import Link from "next/link";
 import React from "react";
 import { CiMail } from "react-icons/ci";
@@ -9,7 +10,9 @@ import { FaPhoneVolume } from "react-icons/fa6";
 import { IoBagOutline } from "react-icons/io5";
 
 const Header = () => {
-  const { ContactData } = useData();
+  const { ContactData, CartItems } = useData();
+  const { setOpenCart, OpenCart } = useStateProvider();
+
   return (
     <div>
       <div className="bg-gray-100">
@@ -73,8 +76,17 @@ const Header = () => {
                 </div>
               </div>
             </div>
-            <div className="text-[22px]">
-              <IoBagOutline />
+
+            <div
+              className="text-[24px] relative cursor-pointer"
+              onClick={() => setOpenCart(!OpenCart)}
+            >
+              <div>
+                <IoBagOutline />
+              </div>
+              <div className="text-white rounded-full bg-mainyellow text-[14px]  absolute -top-2 -right-3 flex items-center justify-center  w-5 h-5">
+                <span> {CartItems.length}</span>
+              </div>
             </div>
           </div>
         </div>

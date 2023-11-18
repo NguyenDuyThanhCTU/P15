@@ -6,7 +6,7 @@ import { IoCartOutline } from "react-icons/io5";
 const ProductCard = ({ Data }: any) => {
   return (
     <Link href={`/chi-tiet-san-pham/${Data.url}`}>
-      <div className="border hover:shadow-2xl  cursor-pointer duration-300">
+      <div className="border hover:shadow-2xl  cursor-pointer duration-300 ">
         <div className="h-[230px] w-full flex justify-start items-end">
           <img
             src={Data.image}
@@ -15,7 +15,7 @@ const ProductCard = ({ Data }: any) => {
           />
         </div>
         <div className="text-center py-3 px-4">
-          <p className="text-[15px] font-normal text-gray-600">{Data.title}</p>
+          <p className="text-[14px] font-normal text-gray-600">{Data.title}</p>
           <div className="mt-5 flex flex-col gap-3">
             <p className="font-normal ">€ {Data.price}</p>
             <div className="flex justify-between items-center ">
