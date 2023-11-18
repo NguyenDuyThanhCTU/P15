@@ -2,16 +2,19 @@
 import React, { useState } from "react";
 import { ChangePassword } from "./Section/ChangePassword";
 import { Login } from "./Section/Login";
+import Register from "./Section/Register";
 
-const ClientLogin: React.FC = () => {
-  const [isChangePasswords, setIsChangePasswords] = useState(false);
+const ClientLogin = () => {
+  const [changeState, setChangeState] = useState(0);
 
   return (
     <>
-      {isChangePasswords ? (
-        <ChangePassword setIsChangePasswords={setIsChangePasswords} />
+      {changeState === 0 ? (
+        <Login setChangeState={setChangeState} />
+      ) : changeState === 1 ? (
+        <ChangePassword setChangeState={setChangeState} />
       ) : (
-        <Login setIsChangePasswords={setIsChangePasswords} />
+        <Register setChangeState={setChangeState} />
       )}
     </>
   );
