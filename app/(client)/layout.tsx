@@ -20,23 +20,23 @@ const layout: React.FC<ClientLayoutProps> = ({ children }) => {
     <div className="font-LexendDeca font-extralight">
       <Header />
 
-      <div className="p:mt-[84px] d:mt-[135px]">
-        {pathname === "/" && (
+      {/*  <div className="p:mt-[84px] d:mt-[135px]">
+         {pathname === "/" && (
           <div className="">
             <HomeSlide />
           </div>
         )}
-        <ProductTypeList />
-        {/*  <div className="z-0 relative">{children}</div>
+        <ProductTypeList /> */}
+      <div className="z-0 relative p:mt-[84px] d:mt-[135px]">{children}</div>
 
-        <TopFooter />
+      {/* <TopFooter />
         <Footer />
         <div className="relative z-50">
           <OnTop />
           <Hotline />
         </div>
-        <Copyright />*/}
-      </div>
+        <Copyright />
+      </div> */}
     </div>
   );
 };

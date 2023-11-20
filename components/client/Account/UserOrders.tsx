@@ -22,7 +22,7 @@ const UserOrders = () => {
         <div>Mã đơn hàng</div>
         <div>Tên người nhận</div>
         <div>Địa chỉ nhận hàng</div>
-        <div className="w-max">Tổng tiền thanh toán</div>
+        <div className="p:w-auto d:w-max">Tổng tiền thanh toán</div>
         <div className="w-full flex justify-end"> Tổng sản phẩm</div>
         <div className="w-full flex justify-center">Trạng thái</div>
       </div>
@@ -38,20 +38,26 @@ const UserOrders = () => {
               key={idx}
               className="grid grid-cols-7 gap-3 py-3  border-b bg-gray-50 hover:bg-gray-100 duration-300 px-2"
             >
-              <div className="text-[14px]">{formattedDate}</div>
+              <div className="text-[14px] truncate">{formattedDate}</div>
               <div
                 className="truncate cursor-pointer text-mainyellow font-normal"
                 onClick={() => HandleClickOrder(order.id)}
               >
                 {order.id}
               </div>
-              <div className="w-full flex justify-start">{order.name}</div>
-              <div className="w-full flex justify-center">{order.address}</div>
-              <div className="w-full flex justify-center">
+              <div className="w-full truncate flex justify-start">
+                {order.name}
+              </div>
+              <div className="w-full truncate flex justify-center">
+                {order.address}
+              </div>
+              <div className="w-full truncate flex justify-center">
                 € {order.totalAmount}
               </div>
-              <div className="w-full flex justify-center">{order.count}</div>
-              <div className="w-full flex justify-center">Đơn mới</div>
+              <div className="w-full truncate flex justify-center">
+                {order.count}
+              </div>
+              <div className="w-full truncate flex justify-center">Đơn mới</div>
             </div>
           );
         })}
@@ -74,11 +80,11 @@ const UserOrders = () => {
                     Địa chỉ thanh toán
                   </h2>
                   <div className="flex flex-col ">
-                    <div>Địa chỉ: {order.address}</div>
-                    <div>Thành phố: {order.city}</div>
-                    <div>Quốc gia: {order.country}</div>
-                    <div>Số điện thoại: {order.phone}</div>
-                    <div>Post code: {order.postCode}</div>
+                    <div>Địa chỉ: {order?.address}</div>
+                    <div>Thành phố: {order?.city}</div>
+                    <div>Quốc gia: {order?.country}</div>
+                    <div>Số điện thoại: {order?.phone}</div>
+                    <div>Post code: {order?.postCode}</div>
                   </div>
                 </div>
               </div>
@@ -86,11 +92,11 @@ const UserOrders = () => {
                 <div className="p-2">
                   <h2 className="font-normal text-[18px]">Địa chỉ giao hàng</h2>
                   <div className="flex flex-col ">
-                    <div className=""> Địa chỉ: {order.address}</div>
-                    <div>Thành phố: {order.city}</div>
-                    <div>Quốc gia: {order.country}</div>
-                    <div>Số điện thoại: {order.phone}</div>
-                    <div>Post code: {order.postCode}</div>
+                    <div className=""> Địa chỉ: {order?.address}</div>
+                    <div>Thành phố: {order?.city}</div>
+                    <div>Quốc gia: {order?.country}</div>
+                    <div>Số điện thoại: {order?.phone}</div>
+                    <div>Post code: {order?.postCode}</div>
                   </div>
                 </div>
               </div>
@@ -119,9 +125,9 @@ const UserOrders = () => {
               ))}
             </div>
             <div className="mt-10 w-full flex  flex-col items-end gap-2 text-[18px] font-normal">
-              <div>Tổng tạm tính: € {order.totalAmount}</div>
+              <div>Tổng tạm tính: € {order?.totalAmount}</div>
               <div>Phí vận chuyển: € 0</div>
-              <div>Tổng cộng: € {order.totalAmount}</div>
+              <div>Tổng cộng: € {order?.totalAmount}</div>
             </div>
           </div>
         </Modal>

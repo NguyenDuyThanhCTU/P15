@@ -192,14 +192,14 @@ const Header = () => {
           </div>
         </div>
       </div>
-      <div className="d:hidden p:block ">
-        <div className="h-[84px] fixed z-50 w-full top-0 ">
-          <div className="px-4 py-2 w-full flex justify-between items-center">
+      <div className="d:hidden p:block  bg-white ">
+        <div className="h-[84px] fixed z-50 w-full top-0 bg-white shadow-xl">
+          <div className="px-4 w-full flex justify-between items-center">
             <div className="h-[84px]">
               <img
                 src={TradeMarkData.websiteLogo}
                 alt="Logo"
-                className="w-full h-full"
+                className="w-full h-full p-2"
               />
             </div>
             <div className="flex gap-2">

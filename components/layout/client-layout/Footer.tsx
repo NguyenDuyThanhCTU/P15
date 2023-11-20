@@ -9,7 +9,7 @@ const Footer = () => {
   const { ContactData } = useData();
   return (
     <div>
-      <div className="w-[1300px] mx-auto grid grid-cols-3 gap-3 py-14">
+      <div className="p:w-auto p:mx-2 d:w-[1300px] d:mx-auto grid p:grid-cols-1   d:grid-cols-3 gap-3 py-14">
         <div className="flex flex-col">
           <h2 className="uppercase font-normal text-[18px]">Liên hệ</h2>
           <div className="mt-3 flex flex-col gap-2 text-[15px]">

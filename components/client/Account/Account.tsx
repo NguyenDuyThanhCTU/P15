@@ -47,10 +47,10 @@ const Account = () => {
   }, [Accounts, currentUser]);
   return (
     <div className="border-t my-10">
-      <div className="w-[1300px] mx-auto py-10">
+      <div className="p:w-auto d:w-[1300px] p:mx-2 d:mx-auto py-10">
         {currentUser ? (
-          <div className="grid grid-cols-6 gap-5">
-            <div className="col-span-1 flex flex-col gap-5 border-r  h-full">
+          <div className="grid p:grid-cols-1 d:grid-cols-6 gap-5">
+            <div className="p:col-span-5 d:col-span-1 flex flex-col gap-5  p:items-center d:items-start w-full border-r  h-full">
               {(currentUser?.role === "admin"
                 ? AdminOptionItems
                 : ClientOptionItems

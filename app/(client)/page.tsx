@@ -35,12 +35,12 @@ const HomePage = async () => {
         />
         <DisplayProduct Data={OutstandingProducts} Topic="Sản phẩm bán chạy" />
         <div className="bg-redPrimmary w-full h-[180px] mt-14 mb-20 ">
-          <div className=" w-[1400px] mx-auto relative">
-            <div className="w-[1400px] absolute">
+          <div className=" p:w-auto p:mx-2 d:w-[1400px]  d:mx-auto relative">
+            <div className="p:w-auto d:w-[1400px] absolute">
               <h2 className="font-normal text-[28px] text-white pt-8 pb-5">
                 Đối Tác
               </h2>
-              <div className=" grid grid-cols-4 gap-20">
+              <div className=" grid w-full   grid-cols-4 p:gap-2 d:gap-20">
                 {partnerItem.map((item: any, idx: number) => (
                   <Link
                     href={`/`}
@@ -57,12 +57,12 @@ const HomePage = async () => {
         <DisplayProduct Data={OutstandingProducts} Topic="Sản phẩm mới" />
 
         <div>
-          <div className=" w-[1400px] mx-auto ">
+          <div className=" p:w-auto p:mx-2 d:w-[1400px]  d:mx-auto ">
             <div className="bg-mainyellow text-white text-[25px] font-normal flex items-center h-12 w-max relative my-10">
               <p className="pl-2 pr-16">Blog</p>
               <div className="bg-white h-20 w-10 absolute -right-3 -top-7 -rotate-45"></div>
             </div>
-            <div className="grid grid-cols-3 gap-5  ">
+            <div className="grid p:grid-cols-2 d:grid-cols-3 gap-5  ">
               {BlogData.slice(0, 3).map((item: any, idx: number) => {
                 const content = item?.content;
                 const maxLength = 150;
