@@ -5,8 +5,7 @@ import React from "react";
 import { AiOutlineClockCircle, AiOutlineUser } from "react-icons/ai";
 
 const PostDetail = ({ Data, RelatedArticles }: any) => {
-  console.log(RelatedArticles);
-  const DetailPostDate = moment
+    const DetailPostDate = moment
     .unix(Data?.createdAt?.seconds)
     .format("MMMM DD, YYYY");
   return (

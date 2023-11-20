@@ -5,6 +5,7 @@ import { notification } from "antd";
 import moment from "moment";
 import Input from "@components/admin/Item/Input";
 import { useData } from "@context/DataProviders";
+import Link from "next/link";
 
 const Cart = () => {
   const [name, setName] = useState("");
@@ -241,12 +242,18 @@ const Cart = () => {
         <div className="flex justify-between mt-10">
           <div></div>
           <div className="flex gap-5">
-            <div className="py-2 px-6  duration-300 cursor-pointer text-mainyellow border-mainyellow uppercase border rounded-full font-normal hover:text-orange-500 hover:border-orange-500">
+            <Link
+              href={`/`}
+              className="py-2 px-6  duration-300 cursor-pointer text-mainyellow border-mainyellow uppercase border rounded-full font-normal hover:text-orange-500 hover:border-orange-500"
+            >
               Tiếp tục mua hàng
-            </div>
-            <div className="py-2 px-10 duration-300 cursor-pointer text-white bg-mainyellow border-mainyellow uppercase border rounded-full font-normal hover:bg-orange-500 hover:border-orange-500">
+            </Link>
+            <Link
+              href={`/dat-hang`}
+              className="py-2 px-10 duration-300 cursor-pointer text-white bg-mainyellow border-mainyellow uppercase border rounded-full font-normal hover:bg-orange-500 hover:border-orange-500"
+            >
               Đặt hàng
-            </div>
+            </Link>
           </div>
         </div>
       </div>

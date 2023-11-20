@@ -42,14 +42,14 @@ const Account = () => {
     },
   ];
   useEffect(() => {
-    const sort = Accounts?.filter((item: any) => item.id === currentUser.id);
+    const sort = Accounts?.filter((item: any) => item.id === currentUser?.id);
     setUser(sort[0]);
   }, [Accounts, currentUser]);
   return (
     <div className="border-t my-10">
       <div className="w-[1300px] mx-auto py-10">
         {currentUser ? (
-          <div className="grid grid-cols-5 gap-5">
+          <div className="grid grid-cols-6 gap-5">
             <div className="col-span-1 flex flex-col gap-5 border-r  h-full">
               {(currentUser?.role === "admin"
                 ? AdminOptionItems
@@ -64,7 +64,7 @@ const Account = () => {
                 </div>
               ))}
             </div>
-            <div className="col-span-4">
+            <div className="col-span-5">
               {currentUser?.role === "admin" ? (
                 <>
                   <div className="flex">

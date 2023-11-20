@@ -28,10 +28,8 @@ const ProductPage = async ({
   if (searchParams.type === undefined) {
     Data = await getDataByTypeProps("products", "parentUrl", params.slug);
   } else {
-    console.log(SearchValue);
     Data = await getDataByTypeProps("products", "typeUrl", SearchValue);
   }
-  console.log(SearchValue);
   return (
     <div>
       <div className="w-[1300px] mx-auto">

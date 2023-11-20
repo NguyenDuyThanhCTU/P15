@@ -16,25 +16,24 @@ type ClientLayoutProps = {
 
 const layout: React.FC<ClientLayoutProps> = ({ children }) => {
   const pathname = usePathname();
-  console.log(pathname);
   return (
     <div className="font-LexendDeca font-extralight">
-      {/* <Header />
+      <Header />
       {pathname === "/" && (
         <>
           <HomeSlide />
         </>
       )}
-      <ProductTypeList /> */}
+      <ProductTypeList />
       <div className="">{children}</div>
 
-      {/* <TopFooter />
+      <TopFooter />
       <Footer />
       <div className="relative z-50">
         <OnTop />
         <Hotline />
       </div>
-      <Copyright /> */}
+      <Copyright />
     </div>
   );
 };

@@ -29,7 +29,6 @@ const UploadPost: React.FC = () => {
   };
   const HandleContinue = () => {
     const sort = Posts.filter((item: any) => item.title === Topic);
-    console.log(sort);
     if (sort) {
       setUpdateId(sort[0]?.id);
       setDropDown("add-post");

@@ -72,7 +72,6 @@ const HomePage = async () => {
                   : "";
 
                 const markup = { __html: truncatedContent };
-                console.log(markup);
                 return (
                   <Link
                     href={`/bai-viet/${item.url}`}

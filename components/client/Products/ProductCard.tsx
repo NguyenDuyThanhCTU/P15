@@ -1,22 +1,56 @@
 "use client";
+import {
+  addDataToArrayField,
+  deleteDataFromArrayField,
+  deleteDataFromArrayValue,
+  updateDocument,
+} from "@config/Services/Firebase/FireStoreDB";
 import { useData } from "@context/DataProviders";
-import { Modal } from "antd";
+import { useStateProvider } from "@context/StateProvider";
+import { Modal, notification } from "antd";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { HiOutlineHeart } from "react-icons/hi";
+import { IoIosHeart } from "react-icons/io";
 import { IoCartOutline } from "react-icons/io5";
 
 const ProductCard = ({ Data }: any) => {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
-  const { currentUser } = useData();
+  const { currentUser, Accounts } = useData();
+  const [user, setUser] = useState<any>([]);
+  const { setIsRefetch } = useStateProvider();
   const router = useRouter();
+  useEffect(() => {
+    const sort = Accounts?.filter(
+      (item: any) => item.username === currentUser?.username
+    );
+    setUser(sort);
+  }, [currentUser, Accounts]);
+
   const HandleFavorite = (id: any) => {
     if (currentUser) {
+      if (user[0]?.favorite.filter((item: any) => item === id).length > 0) {
+        deleteDataFromArrayValue(
+          "accounts",
+          currentUser?.id,
+          "favorite",
+          id
+        ).then(() => {
+          setIsRefetch("CRUD accounts");
+        });
+      } else {
+        addDataToArrayField("accounts", currentUser?.id, "favorite", id).then(
+          () => {
+            setIsRefetch("CRUD accounts");
+          }
+        );
+      }
     } else {
       setIsModalOpen(true);
     }
   };
+
   return (
     <div className="border hover:shadow-2xl  cursor-pointer duration-300 ">
       <Link
@@ -40,15 +74,20 @@ const ProductCard = ({ Data }: any) => {
           <p className="font-normal ">€ {Data.price}</p>
           <div className="flex justify-between items-center ">
             <div
-              className="hover:scale-110 duration-300"
+              className={`hover:scale-110 duration-300 ${
+                user[0]?.favorite?.includes(Data.id) && "text-redPrimmary "
+              }`}
               onClick={() => HandleFavorite(Data.id)}
             >
-              <HiOutlineHeart />
+              <IoIosHeart />
             </div>
-            <div className="border font-normal flex items-center py-1 px-4 rounded-full gap-3  border-mainyellow bg-mainyellow hover:bg-white text-white hover:text-mainyellow">
+            <Link
+              href={`/chi-tiet-san-pham/${Data.url}`}
+              className="border font-normal flex items-center py-1 px-4 rounded-full gap-3  border-mainyellow bg-mainyellow hover:bg-white text-white hover:text-mainyellow"
+            >
               <IoCartOutline />
               <p>Mua ngay</p>
-            </div>
+            </Link>
           </div>
         </div>
       </div>

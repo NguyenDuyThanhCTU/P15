@@ -18,7 +18,7 @@ export type DataContextType = {
   setVideos: (video: any) => void;
   Posts: any;
   setPosts: (post: any) => void;
-  Accounts: any;
+  Accounts: [];
   setAccounts: (account: any) => void;
   UpdateId: any;
   setUpdateId: (update: any) => void;
@@ -58,7 +58,7 @@ export const DataContext = createContext<DataContextType>({
   setVideos: () => {},
   Posts: [],
   setPosts: () => {},
-  Accounts: "",
+  Accounts: [],
   setAccounts: () => {},
   UpdateId: "",
   setUpdateId: () => {},
@@ -94,7 +94,7 @@ export const DataProviders: React.FC<Props> = ({ children }) => {
   const [SocialMedia, setSocialMedia] = useState("");
   const [Videos, setVideos] = useState([]);
   const [Posts, setPosts] = useState([]);
-  const [Accounts, setAccounts] = useState("");
+  const [Accounts, setAccounts] = useState<any>([]);
 
   //Cart
   const [UpdateId, setUpdateId] = useState("");
