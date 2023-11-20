@@ -19,21 +19,24 @@ const layout: React.FC<ClientLayoutProps> = ({ children }) => {
   return (
     <div className="font-LexendDeca font-extralight">
       <Header />
-      {pathname === "/" && (
-        <>
-          <HomeSlide />
-        </>
-      )}
-      <ProductTypeList />
-      <div className="">{children}</div>
 
-      <TopFooter />
-      <Footer />
-      <div className="relative z-50">
-        <OnTop />
-        <Hotline />
+      <div className="p:mt-[84px] d:mt-[135px]">
+        {pathname === "/" && (
+          <div className="">
+            <HomeSlide />
+          </div>
+        )}
+        <ProductTypeList />
+        {/*  <div className="z-0 relative">{children}</div>
+
+        <TopFooter />
+        <Footer />
+        <div className="relative z-50">
+          <OnTop />
+          <Hotline />
+        </div>
+        <Copyright />*/}
       </div>
-      <Copyright />
     </div>
   );
 };

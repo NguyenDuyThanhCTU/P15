@@ -8,7 +8,7 @@ import { Button, Result } from "antd";
 const Order = () => {
   const [step, setStep] = React.useState(2);
   const [DataFormOrder, setDataFormOrder] = useState<any>();
-  console.log(DataFormOrder);
+
   return (
     <div>
       <div className="w-[1300px] mx-auto">

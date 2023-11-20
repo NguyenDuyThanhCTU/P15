@@ -8,14 +8,14 @@ const ProductTypeList = () => {
   const { productTypes } = useData();
   return (
     <div>
-      <div className="w-[1300px] mx-auto pt-10 pb-56">
+      <div className="p:w-auto p:mx-2 d:w-[1300px] d:mx-auto pt-10 pb-56 z-10 relative">
         <div className="w-full justify-center items-center gap-4 flex">
           <div className="w-14 h-[1px] bg-black"></div>
           <h2 className="text-[35px] font-normal">Danh mục sản phẩm</h2>
           <div className="w-14 h-[1px] bg-black"></div>
         </div>
 
-        <div className="flex gap-2 mt-4 absolute w-[1300px]">
+        <div className="p:grid grid-cols-4 d:flex gap-2 mt-4 absolute p:w-auto d:w-[1300px]">
           {TypeProductItems.map((item: any, idx: number) => {
             const sort = productTypes?.filter(
               (type: any) => type.parent === item.label
@@ -39,7 +39,7 @@ const ProductTypeList = () => {
                 >
                   {item.label}
                 </Link>
-                <div className="h-max p-2 group-hover:flex flex-col gap-2 hidden group-hover:bg-white  ">
+                <div className="h-max p-2 group-hover:flex flex-col gap-2 hidden group-hover:bg-white z-20 relative ">
                   {sort?.map((items: any, idx: number) => (
                     <Link
                       href={`/san-pham/${item.value}?type=${items.typeUrl}`}

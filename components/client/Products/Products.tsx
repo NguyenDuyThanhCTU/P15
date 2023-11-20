@@ -9,7 +9,7 @@ import {
   getProducts,
   getDocumentsByField,
 } from "@config/Services/Firebase/FireStoreDB";
-import ProductCard from "./Items/ProductCard";
+import ProductCard from "./ProductCard";
 
 const Products = () => {
   const [DataFetch, setDataFetch] = useState([]);

@@ -27,7 +27,7 @@ const HomeSlide = () => {
           {Slides.map((item: any, idx: number) => (
             <div key={idx}>
               <SwiperSlide>
-                <div className="w-full h-[60vh] flex justify-center items-center">
+                <div className="w-full h-full flex justify-center items-center">
                   <img
                     src={item.image}
                     alt="banner"

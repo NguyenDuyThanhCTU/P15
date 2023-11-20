@@ -32,8 +32,10 @@ const Verify = ({ verify, isId }: any) => {
 
   const onFinish = (values: any) => {
     if (
-      values.username === Accounts.username &&
-      values.password === Accounts.password
+      Accounts.filter(
+        (item: any) =>
+          item.username === values.username && item.password === values.password
+      ).length > 0
     ) {
       const newData = {
         status: "active",

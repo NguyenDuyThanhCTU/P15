@@ -20,11 +20,14 @@ export const ChangePassword = ({ setChangeState }: any) => {
     if (!currentPassword || !newPassword) {
       setErrorMessage(true);
     } else {
-      if (currentPassword === Accounts.password) {
+      const sort: any = Accounts.filter((item: any) => {
+        item.password === currentPassword;
+      });
+      if (sort.length > 0) {
         const Data = {
           password: newPassword,
         };
-        updateDocument("accounts", Accounts.id, Data).then(() => {
+        updateDocument("accounts", sort[0].id, Data).then(() => {
           notification["success"]({
             message: "Đổi mật khẩu thành công !",
             description: `Mật khẩu của bạn đã được cập nhật !`,

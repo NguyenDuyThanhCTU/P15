@@ -11,7 +11,6 @@ const FormOrder = ({ setStep, setData }: any) => {
   const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
   const [address, setAddress] = useState("");
-  console.log(name, phone, postCode, city, country, address);
   const HandleContinue = () => {
     if (!name || !phone || !postCode || !city || !country || !address) {
       notification.warning({ message: "Vui lòng nhập đầy đủ thông tin" });
@@ -29,18 +28,17 @@ const FormOrder = ({ setStep, setData }: any) => {
           message: "Post code không hợp lệ",
         });
       }
+      const Data = {
+        name: name,
+        phone: phone,
+        postCode: postCode,
+        city: city,
+        country: country,
+        address: address,
+      };
+      setData(Data);
+      setStep(2);
     }
-
-    const Data = {
-      name: name,
-      phone: phone,
-      postCode: postCode,
-      city: city,
-      country: country,
-      address: address,
-    };
-    setData(Data);
-    setStep(2);
   };
 
   return (

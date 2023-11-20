@@ -23,16 +23,18 @@ const FormConfirm = ({ setStep, Data }: any) => {
     const product = Products.find((product: any) => product.id === itemId);
 
     if (product) {
+      const { createdAt, ...productWithoutCreatedAt } = product;
       const itemCount = cartMap[itemId];
 
-      const priceAsNumber = parseFloat(product.price);
+      const priceAsNumber = parseFloat(productWithoutCreatedAt.price);
 
       const itemTotal = priceAsNumber * itemCount;
 
       totalAmount += itemTotal;
       FinalCount += itemCount;
+
       cartProducts.push({
-        ...product,
+        ...productWithoutCreatedAt,
 
         count: itemCount,
         total: itemTotal,
@@ -49,13 +51,12 @@ const FormConfirm = ({ setStep, Data }: any) => {
       phone: Data?.phone,
       city: Data?.city,
       country: Data?.country,
-      district: Data?.address,
       address: Data?.address,
       postCode: Data?.postCode,
       products: cartProducts,
       totalAmount: totalAmount,
-      count: cartProducts.count,
-      user: currentUser,
+      count: FinalCount,
+      user: currentUser.id,
     };
     console.log(orderData);
     addDocument("orders", orderData).then(() => {
