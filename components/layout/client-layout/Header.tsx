@@ -2,7 +2,7 @@
 import { HeaderItems } from "@assets/item";
 import { useData } from "@context/DataProviders";
 import { useStateProvider } from "@context/StateProvider";
-import { Drawer } from "antd";
+import { Drawer, Select } from "antd";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import { BiLogOutCircle } from "react-icons/bi";
@@ -15,8 +15,13 @@ import { IoBagOutline, IoChevronDownOutline } from "react-icons/io5";
 import { MdAdminPanelSettings } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
 import { TypeProductItems } from "@assets/item";
+import { useTranslations } from "next-intl";
+
+import { useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 const Header = () => {
+  const t = useTranslations("Authenfication");
   const {
     ContactData,
     CartItems,
@@ -32,6 +37,7 @@ const Header = () => {
   const [openSearchMB, setOpenSearchMB] = useState(false);
   const [open, setOpen] = useState(false);
   const [openTypeMB, setOpenTypeMB] = useState(0);
+  const [language, setLanguage] = useState();
   const UserItems = [
     {
       label: "Thông tin người dùng",
@@ -69,6 +75,23 @@ const Header = () => {
     setSearchRs(sort);
   }, [Products, search]);
 
+  const router = useRouter();
+  const pathname = usePathname();
+  //remove /vi/ or /fr/ in pathname
+  let path = pathname.replace(/\/vi\//g, "").replace(/\/fr\//g, "");
+  useEffect(() => {
+    if (language === "vi") {
+      //push /vi/ in pathname
+
+      console.log("vi");
+      router.push(`/vi/${path}`);
+    } else {
+      setIsLoading(true);
+      //push /fr/ in pathname
+      router.push(`/fr/${path}`);
+      console.log("fr");
+    }
+  }, [language]);
   return (
     <>
       <div className="d:block fixed z-50 w-full top-0 p:hidden">
@@ -93,25 +116,53 @@ const Header = () => {
                 <p>{ContactData.gmail}</p>
               </div>
             </div>
-            {currentUser ? (
-              <Link
-                href={`/tai-khoan`}
-                className=" flex gap-5 items-center font-light cursor-pointer"
+
+            <div className="flex items-center gap-5">
+              <Select
+                value={language}
+                bordered={false}
+                className="w-[150px] border border-mainyellow"
+                onChange={(e) => setLanguage(e)}
               >
-                <div>Cá nhân</div>
-                <div className="h-3 w-[1px] bg-black"></div>
-                <div onClick={() => HandleLogout()}>Đăng xuất</div>
-              </Link>
-            ) : (
-              <Link
-                href={`/dang-nhap`}
-                className=" flex gap-5 items-center  font-light cursor-pointer"
-              >
-                <div>Đăng nhập</div>
-                <div className="h-3 w-[1px] bg-black"></div>
-                <div>Đăng ký</div>
-              </Link>
-            )}
+                <Select.Option value="vi">
+                  <div className="flex items-center gap-2">
+                    <img
+                      src="https://firebasestorage.googleapis.com/v0/b/taphoa-605ab.appspot.com/o/vietnam.png?alt=media&token=a2e4e0ef-e8c1-44ab-965f-8eb24a44d82d"
+                      alt="vietnam flag"
+                    />
+                    <p>Tiếng Việt</p>
+                  </div>
+                </Select.Option>
+                <Select.Option value="fr">
+                  <div className="flex items-center gap-2">
+                    <img
+                      src="https://firebasestorage.googleapis.com/v0/b/taphoa-605ab.appspot.com/o/france.png?alt=media&token=87090e88-bcfc-443d-8050-e589ce33dcf4"
+                      alt="vietnam flag"
+                    />
+                    <p>French</p>
+                  </div>
+                </Select.Option>
+              </Select>
+              {currentUser ? (
+                <Link
+                  href={`/tai-khoan`}
+                  className=" flex gap-5 items-center font-light cursor-pointer"
+                >
+                  <div>{t("profile")}</div>
+                  <div className="h-3 w-[1px] bg-black"></div>
+                  <div onClick={() => HandleLogout()}>{t("logout")}</div>
+                </Link>
+              ) : (
+                <Link
+                  href={`/dang-nhap`}
+                  className=" flex gap-5 items-center  font-light cursor-pointer"
+                >
+                  <div>{t("login")}</div>
+                  <div className="h-3 w-[1px] bg-black"></div>
+                  <div>{t("register")}</div>
+                </Link>
+              )}
+            </div>
           </div>
         </div>
         <div className="shadow-md bg-white">
@@ -130,7 +181,7 @@ const Header = () => {
                   className="cursor-pointer hover:text-red-500 duration-300"
                   key={idx}
                 >
-                  {item.label}
+                  {t(item.label)}
                 </Link>
               ))}
             </div>
@@ -141,7 +192,7 @@ const Header = () => {
                     <input
                       type="text"
                       className="outline-none mr-2 col-span-6"
-                      placeholder="Tìm kiếm"
+                      placeholder={t("search")}
                       value={search}
                       onChange={(e) => setSearch(e.target.value)}
                     />

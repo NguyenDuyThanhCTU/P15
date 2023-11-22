@@ -1,0 +1,18 @@
+{
+    "Authenfication": {
+      "login": "Connexion",
+      "password": "Mot de passe",
+      "submit": "Soumettre",
+      "register": "S'inscrire",
+      "forgot": "Mot de passe oublié",
+      "remember": "Se souvenir de moi",
+      "profile": "Profil",
+      "logout": "Déconnexion",
+      "Mua hàng": "Acheter",
+      "Khuyến mãi": "Promotions",
+      "Thực đơn": "Menu",
+      "Blog": "Blog",
+      "search": "rechercher"
+    }
+  }
+  
