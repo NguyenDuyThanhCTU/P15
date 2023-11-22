@@ -19,7 +19,7 @@ const PostDetailPage = async ({ params }: { params: { slug: string } }) => {
     .format("MMMM DD, YYYY");
   return (
     <>
-      <div className="p:w-auto d:w-[1300px] p:mx-auto d:mx-auto ">
+      <div className="p:w-auto d:w-[1300px] p:mx-2 d:mx-auto ">
         <div className="flex items-center gap-2 font-light pt-5 pb-10">
           <Link
             href={`/`}

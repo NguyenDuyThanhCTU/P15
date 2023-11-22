@@ -8,7 +8,7 @@ const BlogPage = async () => {
 
   return (
     <div>
-      <div className="w-[1300px] mx-auto  pt-5 pb-10">
+      <div className="d:w-[1300px] d:mx-auto  pt-5 pb-10 p:w-auto p:mx-2">
         <div className="flex items-center gap-2 font-light pt-5 pb-10 ">
           <Link
             href={`/`}
@@ -19,7 +19,7 @@ const BlogPage = async () => {
           <p className="text-[14px]">/</p>
           <p>Blog</p>
         </div>
-        <div className="grid grid-cols-3 gap-5  ">
+        <div className="grid p:grid-cols-2 d:grid-cols-3 gap-5  ">
           {Data.map((item: any, idx: number) => {
             const content = item?.content;
             const maxLength = 150;

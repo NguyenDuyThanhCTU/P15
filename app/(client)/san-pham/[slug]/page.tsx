@@ -32,7 +32,7 @@ const ProductPage = async ({
   }
   return (
     <div>
-      <div className="w-[1300px] mx-auto">
+      <div className="p:w-auto p:mx-2 d:w-[1300px] d:mx-auto">
         <div className="flex items-center gap-2 font-light pt-5 pb-10 ">
           <Link
             href={`/`}
@@ -64,7 +64,7 @@ const ProductPage = async ({
           )}
         </div>
         <div className="my-5">
-          <div className="grid grid-cols-5  gap-5">
+          <div className="grid p:grid-cols-2 d:grid-cols-5  gap-5">
             {Data.map((item: any, idx: number) => (
               <div key={idx}>
                 <ProductCard Data={item} />

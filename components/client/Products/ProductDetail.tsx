@@ -1,5 +1,5 @@
 "use client";
-import { Image, Tabs } from "antd";
+import { Image, Modal, Tabs } from "antd";
 import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -15,8 +15,9 @@ import { FiPhoneCall } from "react-icons/fi";
 
 const ProductDetail = ({ Data, SimilarProduct }: any) => {
   const [isCombo, setIsCombo] = useState(1);
-  const { setCartItems, Sale } = useData();
+  const { setCartItems, Sale, currentUser } = useData();
   const { setOpenCart, OpenCart } = useStateProvider();
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
   const router = useRouter();
   const onMinus = () => {
     if (isCombo > 0) {
@@ -24,15 +25,18 @@ const ProductDetail = ({ Data, SimilarProduct }: any) => {
     }
   };
   const HandleOrder = (id: string, type: string) => {
-    if (type === "buy") {
-      setCartItems((prevItems: any) => [...prevItems, id]);
-      router.push("/gio-hang");
+    if (currentUser) {
+      if (type === "buy") {
+        setCartItems((prevItems: any) => [...prevItems, id]);
+        router.push("/gio-hang");
+      } else {
+        setCartItems((prevItems: any) => [
+          ...prevItems,
+          ...Array(isCombo).fill(id),
+        ]);
+        setOpenCart(true);
+      }
     } else {
-      setCartItems((prevItems: any) => [
-        ...prevItems,
-        ...Array(isCombo).fill(id),
-      ]);
-      setOpenCart(true);
     }
   };
 
@@ -257,6 +261,31 @@ const ProductDetail = ({ Data, SimilarProduct }: any) => {
     >
       <ShopCart />
     </div> */}
+      <Modal
+        closable={false}
+        open={isModalOpen}
+        onCancel={() => setIsModalOpen(false)}
+        footer={null}
+      >
+        <div>
+          <h2 className="text-[24px] font-semibold">Đến trang đăng nhập</h2>
+          <p>Đăng nhập để mua hàng</p>
+          <div className="flex w-full justify-center gap-5 mt-5">
+            <div
+              className="py-2 px-6 rounded-full border border-mainyellow cursor-pointer text-mainyellow duration-300 hover:border-orange-500 hover:text-orange-500"
+              onClick={() => setIsModalOpen(false)}
+            >
+              Hủy
+            </div>
+            <div
+              className="py-2 px-6 rounded-full border border-mainyellow bg-mainyellow text-white duration-300 hover:bg-orange-500 hover:border-orange-500 cursor-pointer"
+              onClick={() => router.push("/dang-nhap")}
+            >
+              Đăng nhập
+            </div>
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 };

@@ -11,7 +11,7 @@ const Order = () => {
 
   return (
     <div>
-      <div className="w-[1300px] mx-auto">
+      <div className="d:w-[1300px] d:mx-auto p:w-auto p:mx-2">
         <div className="flex items-center gap-2 font-light pt-5 pb-10">
           <Link
             href={`/`}
@@ -23,7 +23,7 @@ const Order = () => {
           <p>Địa chỉ giao hàng</p>
         </div>
 
-        <div className="px-20 ">
+        <div className="d:px-20 p:px-0">
           <div className="grid items-center grid-cols-8 gap-2 justify-center">
             <div className="flex items-center gap-2 col-span-2">
               <div
@@ -67,13 +67,25 @@ const Order = () => {
           </div>
 
           <div>
-            <div className={`${step === 1 ? "block" : "hidden"} px-20 my-5`}>
+            <div
+              className={`${
+                step === 1 ? "block" : "hidden"
+              } p:px-0 d:px-20 my-5`}
+            >
               <FormOrder setStep={setStep} setData={setDataFormOrder} />
             </div>
-            <div className={`${step === 2 ? "block" : "hidden"} px-20 my-5`}>
+            <div
+              className={`${
+                step === 2 ? "block" : "hidden"
+              } p:px-0 d:px-20 my-5`}
+            >
               <FormConfirm setStep={setStep} Data={DataFormOrder} />
             </div>
-            <div className={`${step === 3 ? "block" : "hidden"} px-20 my-5`}>
+            <div
+              className={`${
+                step === 3 ? "block" : "hidden"
+              } p:px-0 d:px-20 my-5`}
+            >
               <Result
                 status="success"
                 title="Đặt hàng thành công!"

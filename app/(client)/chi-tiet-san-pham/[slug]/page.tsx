@@ -12,7 +12,7 @@ const ProductDetailPage = async ({ params }: { params: { slug: string } }) => {
   );
   return (
     <div>
-      <div className="w-[1300px] mx-auto">
+      <div className="d:w-[1300px] p:mx-2 d:mx-auto p:w-auto">
         <div className="flex items-center gap-2 font-light pt-5 pb-10 ">
           <Link
             href={`/`}

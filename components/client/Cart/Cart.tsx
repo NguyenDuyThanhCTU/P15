@@ -148,7 +148,7 @@ const Cart = () => {
 
   return (
     <div>
-      <div className="w-[1300px] mx-auto py-14">
+      <div className="p:w-auto p:mx-2 d:w-[1300px] d:mx-auto py-14">
         <div className="border shadow-xl">
           <div className="p-2">
             <h3 className=" uppercase text-[24px] font-normail  w-max  pb-2">
