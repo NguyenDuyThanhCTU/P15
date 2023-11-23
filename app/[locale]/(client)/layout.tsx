@@ -19,13 +19,14 @@ const layout: React.FC<ClientLayoutProps> = ({ children }) => {
   return (
     <div className="font-LexendDeca font-extralight">
       <Header />
-      <>{children}</>
-      {/* <div className="p:mt-[84px] d:mt-[135px]">
-        {pathname === "/" && (
-          <div className="">
-            <HomeSlide />
-          </div>
-        )}
+
+      <div className="p:mt-[84px] d:mt-[135px]">
+        {pathname === "/fr" ||
+          (pathname == "/vi" && (
+            <div className="">
+              <HomeSlide />
+            </div>
+          ))}
         <ProductTypeList />
         <div className="z-0 relative">{children}</div>
 
@@ -36,7 +37,7 @@ const layout: React.FC<ClientLayoutProps> = ({ children }) => {
           <Hotline />
         </div>
         <Copyright />
-      </div> */}
+      </div>
     </div>
   );
 };

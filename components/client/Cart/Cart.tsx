@@ -6,16 +6,13 @@ import moment from "moment";
 import Input from "@components/admin/Item/Input";
 import { useData } from "@context/DataProviders";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 const Cart = () => {
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
-  const [city, setCity] = useState("");
-  const [district, setDistrict] = useState("");
-  const [street, setStreet] = useState("");
-  const [address, setAddress] = useState("");
-  const [description, setDescription] = useState("");
+  const pathname = usePathname();
+  const path = pathname.split("/")[1];
+  const i18nTranslations = useTranslations("Data");
 
   const { CartItems, Products, setCartItems, Sale } = useData();
 
@@ -63,86 +60,6 @@ const Cart = () => {
     setCartItems(updatedCartItems);
   };
 
-  const HandleDiscard = () => {
-    setAddress("");
-    setStreet("");
-    setCity("");
-    setDescription("");
-    setDistrict("");
-    setName("");
-    setPhone("");
-    setEmail("");
-  };
-
-  const HandleSubmit = async (e: any) => {
-    e.preventDefault();
-    if (!phone || !name || !email || !address || !district || !city) {
-      notification["warning"]({
-        message: "Thao tác KHÔNG thành công !",
-        description: `
-           Vui lòng nhập đầy đủ THÔNG TIN !`,
-      });
-    } else {
-      const currentTime = new Date();
-
-      const dataFields = [
-        { title: "Họ Tên", value: name },
-        { title: "Email", value: email },
-        { title: "SĐT", value: phone },
-        { title: "ĐC", value: `${address} ${street}, ${district}, ${city}` },
-        { title: "Yêu Cầu Khác", value: description },
-        { title: "Tổng số lượng sản phẩm", value: `${FinalCount} Sản phẩm` },
-        {
-          title: "Chi tiết hóa đơn",
-          value: `${cartProducts
-            .map((items: any, idx: number) => {
-              return `----------------------------------------------- Sản phẩm ${idx} ------------------------------------------------- \nTên sản phẩm: ${items.title} \n số lượng: ${items.count}  \n loại: ${items.type} \n Giá: ${items.price} VNĐ \n `;
-            })
-            .join("")}
-        `,
-        },
-        {
-          title: "Tổng Giá trị hóa đơn",
-          value: `${totalAmount.toFixed(3)} VNĐ`,
-        },
-        { title: "Thời gian đặt", value: currentTime },
-      ];
-
-      const data: any = {};
-
-      dataFields.forEach((field) => {
-        data[field.title] = field.value;
-      });
-
-      const response = await fetch(
-        "https://formsubmit.co/ajax/thanhnd2512@gmail.com",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-          body: JSON.stringify(data),
-        }
-      );
-
-      if (response.ok) {
-        HandleDiscard();
-        notification["success"]({
-          message: "Thành công !",
-          description: `
-             Chúng tôi sẽ liên hệ trong thời gian sớm nhất !`,
-        });
-      } else {
-        notification["error"]({
-          message: "Lỗi !",
-          description: `
-             Lỗi không xác định !`,
-        });
-      }
-    }
-  };
-
   const currentTime = new Date();
   const formatCurrentTime = moment(currentTime).format("YYYY-MM-DD");
 
@@ -152,13 +69,13 @@ const Cart = () => {
         <div className="border shadow-xl">
           <div className="p-2">
             <h3 className=" uppercase text-[24px] font-normail  w-max  pb-2">
-              giỏ hàng của bạn
+              {i18nTranslations("giỏ hàng của bạn")}
             </h3>
             <div className="grid grid-cols-5 w-full border-b pb-3 text-[22px] font-normal border-black">
-              <p className="col-span-2">Sản phẩm</p>
-              <p className=" col-span-1">giá</p>
-              <p className=" col-span-1">Số lượng</p>
-              <p className=" col-span-1">Tạm tính</p>
+              <p className="col-span-2">{i18nTranslations("Sản phẩm")}</p>
+              <p className=" col-span-1">{i18nTranslations("Giá")}</p>
+              <p className=" col-span-1">{i18nTranslations("Số lượng")}</p>
+              <p className=" col-span-1">{i18nTranslations("Tạm tính")}</p>
             </div>
             <div className="text-right">
               <div className="h-[420px] overflow-y-auto   ">
@@ -203,7 +120,7 @@ const Cart = () => {
                             onClick={() => handleRemoveFromCart(product.id)}
                           >
                             <div className="border border-mainyellow py-2 cursor-pointer hover:bg-mainyellow hover:text-white duration-300 px-6 rounded-full text-mainyellow">
-                              Xóa
+                              {i18nTranslations("Xóa")}
                             </div>
                           </div>
                         </div>
@@ -231,7 +148,7 @@ const Cart = () => {
                 <div className=" "></div>
                 <div className="flex flex-col gap-2  uppercase font-bold  text-redPrimmary text-[20px] ">
                   <div>
-                    Tổng tiền hàng:
+                    {i18nTranslations("Tổng tiền hàng")}
                     <span className=""> € {totalAmount}</span>
                   </div>
                 </div>
@@ -243,16 +160,16 @@ const Cart = () => {
           <div></div>
           <div className="flex gap-5">
             <Link
-              href={`/`}
+              href={`/${path}/`}
               className="py-2 px-6  duration-300 cursor-pointer text-mainyellow border-mainyellow uppercase border rounded-full font-normal hover:text-orange-500 hover:border-orange-500"
             >
-              Tiếp tục mua hàng
+              {i18nTranslations("Tiếp tục mua hàng")}
             </Link>
             <Link
-              href={`/dat-hang`}
+              href={`/${path}/dat-hang`}
               className="py-2 px-10 duration-300 cursor-pointer text-white bg-mainyellow border-mainyellow uppercase border rounded-full font-normal hover:bg-orange-500 hover:border-orange-500"
             >
-              Đặt hàng
+              {i18nTranslations("Đặt hàng")}
             </Link>
           </div>
         </div>

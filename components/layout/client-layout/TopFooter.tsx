@@ -1,7 +1,10 @@
 import { TopFooterItems } from "@assets/item";
+import { useTranslations } from "next-intl";
 import React from "react";
 
 const TopFooter = () => {
+  const i18nTranslations = useTranslations("Data");
+
   return (
     <div className="bg-mainyellow text-white">
       <div className="d:w-[1250px] p:w-auto  p:mx-2 d:mx-auto flex  d:flex-row p:flex-col  gap-5 justify-between py-8">
@@ -10,7 +13,7 @@ const TopFooter = () => {
             <div>
               <img src={item.image} alt="top footer" />
             </div>
-            <p className="w-max font-normal">{item.label}</p>
+            <p className="w-max font-normal">{i18nTranslations(item.label)}</p>
           </div>
         ))}
       </div>

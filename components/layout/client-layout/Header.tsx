@@ -21,7 +21,8 @@ import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
 
 const Header = () => {
-  const t = useTranslations("Authenfication");
+  const i18nTranslations = useTranslations("Data");
+
   const {
     ContactData,
     CartItems,
@@ -37,7 +38,7 @@ const Header = () => {
   const [openSearchMB, setOpenSearchMB] = useState(false);
   const [open, setOpen] = useState(false);
   const [openTypeMB, setOpenTypeMB] = useState(0);
-  const [language, setLanguage] = useState();
+  const [language, setLanguage] = useState("");
   const UserItems = [
     {
       label: "Thông tin người dùng",
@@ -78,20 +79,36 @@ const Header = () => {
   const router = useRouter();
   const pathname = usePathname();
   //remove /vi/ or /fr/ in pathname
-  let path = pathname.replace(/\/vi\//g, "").replace(/\/fr\//g, "");
+  let path = pathname.replace(/^\/(vi|fr)\//, "/");
+  const pathNav = pathname.split("/")[1];
   useEffect(() => {
-    if (language === "vi") {
-      //push /vi/ in pathname
-
-      console.log("vi");
-      router.push(`/vi/${path}`);
-    } else {
-      setIsLoading(true);
-      //push /fr/ in pathname
-      router.push(`/fr/${path}`);
-      console.log("fr");
+    if (pathname.includes("/vi")) {
+      setLanguage("vi");
+    }
+    if (pathname.includes("/fr")) {
+      setLanguage("fr");
     }
   }, [language]);
+
+  const HandleChangeLanguage = (e: any) => {
+    setLanguage(e);
+    if (e === "vi") {
+      if (path === "/vi" || path === "/fr") {
+        router.push(`/vi`);
+      } else {
+        router.push(`/vi/${path}`);
+      }
+
+      // console.log(`/vi${path}`);
+    }
+    if (e === "fr") {
+      if (path === "/vi" || path === "/fr") {
+        router.push(`/fr`);
+      } else {
+        router.push(`/fr/${path}`);
+      }
+    }
+  };
   return (
     <>
       <div className="d:block fixed z-50 w-full top-0 p:hidden">
@@ -122,7 +139,7 @@ const Header = () => {
                 value={language}
                 bordered={false}
                 className="w-[150px] border border-mainyellow"
-                onChange={(e) => setLanguage(e)}
+                onChange={(e) => HandleChangeLanguage(e)}
               >
                 <Select.Option value="vi">
                   <div className="flex items-center gap-2">
@@ -145,21 +162,23 @@ const Header = () => {
               </Select>
               {currentUser ? (
                 <Link
-                  href={`/tai-khoan`}
+                  href={`/${pathNav}/tai-khoan`}
                   className=" flex gap-5 items-center font-light cursor-pointer"
                 >
-                  <div>{t("profile")}</div>
+                  <div>{i18nTranslations("Thông tin người dùng")}</div>
                   <div className="h-3 w-[1px] bg-black"></div>
-                  <div onClick={() => HandleLogout()}>{t("logout")}</div>
+                  <div onClick={() => HandleLogout()}>
+                    {i18nTranslations("Đăng xuất")}
+                  </div>
                 </Link>
               ) : (
                 <Link
                   href={`/dang-nhap`}
                   className=" flex gap-5 items-center  font-light cursor-pointer"
                 >
-                  <div>{t("login")}</div>
+                  <div>{i18nTranslations("Đăng nhập")}</div>
                   <div className="h-3 w-[1px] bg-black"></div>
-                  <div>{t("register")}</div>
+                  <div>{i18nTranslations("Đăng xuất")}</div>
                 </Link>
               )}
             </div>
@@ -167,7 +186,7 @@ const Header = () => {
         </div>
         <div className="shadow-md bg-white">
           <div className="h-24 flex justify-between w-[1300px] mx-auto items-center">
-            <Link href={`/`} className="h-24 p-3">
+            <Link href={`${pathNav}/`} className="h-24 p-3">
               <img
                 src={TradeMarkData.websiteLogo}
                 alt="logo"
@@ -177,11 +196,11 @@ const Header = () => {
             <div className="flex gap-10 text-[16px] uppercase font-normal ">
               {HeaderItems.map((item: any, idx: number) => (
                 <Link
-                  href={item.value}
+                  href={`/${pathNav}${item.value}`}
                   className="cursor-pointer hover:text-red-500 duration-300"
                   key={idx}
                 >
-                  {t(item.label)}
+                  {i18nTranslations(item.label)}
                 </Link>
               ))}
             </div>
@@ -192,7 +211,7 @@ const Header = () => {
                     <input
                       type="text"
                       className="outline-none mr-2 col-span-6"
-                      placeholder={t("search")}
+                      placeholder={i18nTranslations("search")}
                       value={search}
                       onChange={(e) => setSearch(e.target.value)}
                     />
@@ -216,7 +235,7 @@ const Header = () => {
                     <div className=" flex flex-col">
                       {searchRs.map((product: any, idx: number) => (
                         <Link
-                          href={`/chi-tiet-san-pham/${product.url}`}
+                          href={`/${pathNav}/chi-tiet-san-pham/${product.url}`}
                           key={idx}
                           className="cursor-pointer p-2 hover:bg-gray-100"
                         >
@@ -254,6 +273,33 @@ const Header = () => {
               />
             </div>
             <div className="flex gap-2">
+              <div className="flex items-center gap-5">
+                <Select
+                  value={language}
+                  bordered={false}
+                  className="w-[150px] border border-mainyellow"
+                  onChange={(e) => HandleChangeLanguage(e)}
+                >
+                  <Select.Option value="vi">
+                    <div className="flex items-center gap-2">
+                      <img
+                        src="https://firebasestorage.googleapis.com/v0/b/taphoa-605ab.appspot.com/o/vietnam.png?alt=media&token=a2e4e0ef-e8c1-44ab-965f-8eb24a44d82d"
+                        alt="vietnam flag"
+                      />
+                      <p>Tiếng Việt</p>
+                    </div>
+                  </Select.Option>
+                  <Select.Option value="fr">
+                    <div className="flex items-center gap-2">
+                      <img
+                        src="https://firebasestorage.googleapis.com/v0/b/taphoa-605ab.appspot.com/o/france.png?alt=media&token=87090e88-bcfc-443d-8050-e589ce33dcf4"
+                        alt="vietnam flag"
+                      />
+                      <p>French</p>
+                    </div>
+                  </Select.Option>
+                </Select>
+              </div>
               <div
                 className="text-[22px] p-2"
                 onClick={() => setOpenSearchMB(!openSearchMB)}
@@ -309,7 +355,7 @@ const Header = () => {
                   <div className=" flex flex-col">
                     {searchRs.map((product: any, idx: number) => (
                       <Link
-                        href={`/chi-tiet-san-pham/${product.url}`}
+                        href={`${pathNav}/chi-tiet-san-pham/${product.url}`}
                         key={idx}
                         className="cursor-pointer p-2 hover:bg-gray-100"
                       >
@@ -346,12 +392,12 @@ const Header = () => {
                      flex"
                       >
                         <Link
-                          href={`/san-pham/${item.value}`}
+                          href={`/${pathNav}/san-pham/${item.value}`}
                           className={`${
                             openTypeMB === idx + 1 && "text-orange-500"
                           }`}
                         >
-                          {item.label}
+                          {i18nTranslations(item.label)}
                         </Link>
                         {sort.length > 0 && (
                           <div
@@ -368,7 +414,7 @@ const Header = () => {
                         <div className="ml-2 flex flex-col">
                           {sort?.map((items: any, idx: number) => (
                             <Link
-                              href={`/san-pham/${item.value}?type=${items.typeUrl}`}
+                              href={`/${pathNav}/san-pham/${item.value}?type=${items.typeUrl}`}
                               key={idx}
                               className="hover:text-orange-500 py-1"
                             >
@@ -385,36 +431,36 @@ const Header = () => {
                 <div className="flex flex-col mt-2">
                   {HeaderItems.map((item: any, idx: number) => (
                     <Link
-                      href={item.value}
+                      href={`/${pathNav}/${item.value}`}
                       className="cursor-pointer border-b hover:text-red-500 duration-300 py-2"
                       key={idx}
                     >
-                      {item.label}
+                      {i18nTranslations(item.label)}
                     </Link>
                   ))}
                   {currentUser ? (
                     <>
                       <Link
-                        href={`/tai-khoan`}
+                        href={`/${pathNav}/tai-khoan`}
                         className="cursor-pointer border-b hover:text-red-500 duration-300 py-2"
                       >
-                        Cá nhân
+                        {i18nTranslations("Cá nhân")}
                       </Link>
                       <div
                         onClick={() => HandleLogout()}
                         className="cursor-pointer border-b hover:text-red-500 duration-300 py-2"
                       >
-                        Đăng xuất
+                        {i18nTranslations("Đăng xuất")}
                       </div>
                     </>
                   ) : (
                     <Link href={`/dang-nhap`}>
                       {" "}
                       <div className="cursor-pointer border-b hover:text-red-500 duration-300 py-2">
-                        Đăng nhập
+                        {i18nTranslations("Đăng nhập")}
                       </div>
                       <div className="cursor-pointer border-b hover:text-red-500 duration-300 py-2">
-                        Đăng ký
+                        {i18nTranslations("Đăng ký")}
                       </div>
                     </Link>
                   )}

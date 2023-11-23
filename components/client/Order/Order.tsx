@@ -4,8 +4,13 @@ import React, { useState } from "react";
 import FormOrder from "./FormOrder";
 import FormConfirm from "./FormConfirm";
 import { Button, Result } from "antd";
+import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 const Order = () => {
+  const pathname = usePathname();
+  const path = pathname.split("/")[1];
+  const i18nTranslations = useTranslations("Data");
   const [step, setStep] = React.useState(2);
   const [DataFormOrder, setDataFormOrder] = useState<any>();
 
@@ -14,7 +19,7 @@ const Order = () => {
       <div className="d:w-[1300px] d:mx-auto p:w-auto p:mx-2">
         <div className="flex items-center gap-2 font-light pt-5 pb-10">
           <Link
-            href={`/`}
+            href={`/${path}/`}
             className="hover:text-blue-700 cursor-pointer underline"
           >
             Trang chủ

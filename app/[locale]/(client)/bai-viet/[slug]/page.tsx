@@ -1,11 +1,17 @@
+"use client";
 import PostsCategory from "@components/client/Posts/PostsCategory";
 import { getAllDataProps, getDataByTypeProps } from "@lib/get-data";
 import moment from "moment";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React from "react";
 import { AiOutlineClockCircle, AiOutlineUser } from "react-icons/ai";
 
 const PostDetailPage = async ({ params }: { params: { slug: string } }) => {
+  const pathname = usePathname();
+  const path = pathname.split("/")[1];
+  const i18nTranslations = useTranslations("Data");
   const Data = await getDataByTypeProps("posts", "url", params.slug);
   const DataCategory = await getDataByTypeProps(
     "posts",
@@ -22,17 +28,17 @@ const PostDetailPage = async ({ params }: { params: { slug: string } }) => {
       <div className="p:w-auto d:w-[1300px] p:mx-2 d:mx-auto ">
         <div className="flex items-center gap-2 font-light pt-5 pb-10">
           <Link
-            href={`/`}
+            href={`/${path}/`}
             className="hover:text-blue-700 cursor-pointer underline"
           >
-            Trang chủ
+            {i18nTranslations("Trang chủ")}
           </Link>
           <p className="text-[14px]">/</p>
           <Link
-            href={`/blog`}
+            href={`/${path}/blog`}
             className="hover:text-blue-500 cursor-pointer underline"
           >
-            Blog
+            {i18nTranslations("Blog")}
           </Link>
 
           <p className="text-[14px]">/</p>
@@ -41,9 +47,7 @@ const PostDetailPage = async ({ params }: { params: { slug: string } }) => {
         <div className="pb-10  grid p:grid-cols-1 d:grid-cols-7 font-LexendDeca font-extralight gap-10">
           <div className="border h-max border-gray-400 col-span-2 d:block p:hidden">
             <div className="p-3 ">
-              <h2 className="text-[20px] uppercase text-center pb-2 border-b border-black">
-                Bài viết liên quan
-              </h2>
+              <h2 className="text-[20px] uppercase text-center pb-2 border-b border-black"></h2>
               <PostsCategory Data={DataCategory} />
             </div>
           </div>

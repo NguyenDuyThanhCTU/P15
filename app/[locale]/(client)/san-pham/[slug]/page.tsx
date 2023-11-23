@@ -1,6 +1,9 @@
+"use client";
 import ProductCard from "@components/client/Products/ProductCard";
 import { getDataByTypeProps } from "@lib/get-data";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React from "react";
 
 const ProductPage = async ({
@@ -10,6 +13,10 @@ const ProductPage = async ({
   params: { slug: string };
   searchParams: { [key: string]: string | string[] | undefined };
 }) => {
+  const pathname = usePathname();
+  const path = pathname.split("/")[1];
+  const i18nTranslations = useTranslations("Data");
+
   const ProductType = await getDataByTypeProps(
     "productTypes",
     "parentUrl",
@@ -35,31 +42,31 @@ const ProductPage = async ({
       <div className="p:w-auto p:mx-2 d:w-[1300px] d:mx-auto">
         <div className="flex items-center gap-2 font-light pt-5 pb-10 ">
           <Link
-            href={`/`}
+            href={`${path}/`}
             className="hover:text-blue-700 cursor-pointer underline"
           >
-            Trang chủ
+            {i18nTranslations("Trang chủ")}
           </Link>
           <p className="text-[14px]">/</p>
           {SearchValue ? (
             <>
               {" "}
               <Link
-                href={`/san-pham/${ProductType[0]?.parentUrl}`}
+                href={`${path}/san-pham/${ProductType[0]?.parentUrl}`}
                 className="hover:text-blue-700 cursor-pointer underline"
               >
-                {ProductType[0]?.parent}
+                {i18nTranslations(ProductType[0]?.parent)}
               </Link>
             </>
           ) : (
             <>
-              <p> {ProductType[0]?.parent}</p>
+              <p> {i18nTranslations(ProductType[0]?.parent)}</p>
             </>
           )}
           {SearchValue && (
             <>
               <p className="text-[14px]">/</p>
-              <div className=" ">{ProductType1[0].type}</div>
+              <div className=" ">{i18nTranslations(ProductType1[0].type)}</div>
             </>
           )}
         </div>

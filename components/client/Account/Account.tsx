@@ -6,8 +6,13 @@ import UserInformation from "./UserInformation";
 import UserFavorite from "./UserFavorite";
 import UserOrders from "./UserOrders";
 import UserChangePassword from "./UserChangePassword";
+import { useTranslations } from "next-intl";
+import { usePathname } from "next/navigation";
 
 const Account = () => {
+  const pathname = usePathname();
+  const path = pathname.split("/")[1];
+  const i18nTranslations = useTranslations("Data");
   const { currentUser, Accounts } = useData();
   const [selected, setSelected] = React.useState(0);
   const [user, setUser] = React.useState<any>(null);
@@ -60,7 +65,7 @@ const Account = () => {
                   onClick={() => setSelected(idx)}
                   className="cursor-pointer  hover:scale-105 duration-300 font-light hover:text-mainyellow"
                 >
-                  {item.label}
+                  {i18nTranslations(item.label)}
                 </div>
               ))}
             </div>
@@ -73,7 +78,7 @@ const Account = () => {
                       className="py-2 px-10 rounded-full cursor-pointer text-[24px] font-normal text-white bg-mainyellow border-mainyellow duration-300 hover:bg-orange-500 hover:border-orange-500"
                     >
                       {" "}
-                      Đến trang quản trị
+                      {i18nTranslations("Đến trang quản trị")}
                     </Link>
                   </div>
                 </>
@@ -104,7 +109,7 @@ const Account = () => {
           <div className="h-[50vh] flex items-center gap-2 flex-col justify-center">
             {" "}
             <h2 className="font-light  text-[20px] ">
-              Bạn chưa đăng nhập?
+              {i18nTranslations("Bạn chưa đăng nhập")}
             </h2>{" "}
             <div className="flex">
               <Link
@@ -112,7 +117,7 @@ const Account = () => {
                 className="py-2 px-10 rounded-full cursor-pointer text-[24px] font-normal text-white bg-mainyellow border-mainyellow duration-300 hover:bg-orange-500 hover:border-orange-500"
               >
                 {" "}
-                Đến trang đăng nhập
+                {i18nTranslations("Đến trang đăng nhập")}
               </Link>
             </div>
           </div>

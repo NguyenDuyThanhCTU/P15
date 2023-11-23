@@ -1,6 +1,8 @@
 "use client";
 import { useData } from "@context/DataProviders";
 import { Modal } from "antd";
+import { useTranslations } from "next-intl";
+import { usePathname } from "next/navigation";
 import React from "react";
 
 const UserOrders = () => {
@@ -14,17 +16,25 @@ const UserOrders = () => {
       setIsModalOpen(true);
     }
   };
-
+  const i18nTranslations = useTranslations("Data");
+  const pathname = usePathname();
+  const path = pathname.split("/")[1];
   return (
     <div>
       <div className="grid grid-cols-7 gap-3  py-3 px-2 font-normal bg-mainyellow text-white items-center">
-        <div>Ngày đặt hàng</div>
-        <div>Mã đơn hàng</div>
-        <div>Tên người nhận</div>
-        <div>Địa chỉ nhận hàng</div>
-        <div className="p:w-auto d:w-max">Tổng tiền thanh toán</div>
-        <div className="w-full flex justify-end"> Tổng sản phẩm</div>
-        <div className="w-full flex justify-center">Trạng thái</div>
+        <div>{i18nTranslations("Ngày đặt hàng")}</div>
+        <div>{i18nTranslations("Mã đơn hàng")}</div>
+        <div>{i18nTranslations("Tên người nhận")}</div>
+        <div>{i18nTranslations("Địa chỉ nhận hàng")}</div>
+        <div className="p:w-auto d:w-max">
+          {i18nTranslations("Tổng tiền thanh toán")}
+        </div>
+        <div className="w-full flex justify-end">
+          {i18nTranslations("Tổng sản phẩm")}
+        </div>
+        <div className="w-full flex justify-center">
+          {i18nTranslations("Trạng thái")}
+        </div>
       </div>
       <div className="">
         {Orders.map((order: any, idx: number) => {
@@ -57,7 +67,9 @@ const UserOrders = () => {
               <div className="w-full truncate flex justify-center">
                 {order.count}
               </div>
-              <div className="w-full truncate flex justify-center">Đơn mới</div>
+              <div className="w-full truncate flex justify-center">
+                {i18nTranslations("Đơn mới")}
+              </div>
             </div>
           );
         })}
@@ -71,43 +83,69 @@ const UserOrders = () => {
         >
           <div className="flex flex-col items-center  font-LexendDeca font-extralight">
             <h2 className="py-4 border-b w-full text-center text-[25px] font-bold">
-              Thông tin đơn hàng
+              {i18nTranslations("Thông tin đơn hàng")}
             </h2>
             <div className="grid grid-cols-2 gap-2 w-full mt-2">
               <div className="border">
                 <div className="p-2">
                   <h2 className="font-normal text-[18px]">
-                    Địa chỉ thanh toán
+                    {i18nTranslations("Địa chỉ thanh toán")}
                   </h2>
                   <div className="flex flex-col ">
-                    <div>Địa chỉ: {order?.address}</div>
-                    <div>Thành phố: {order?.city}</div>
-                    <div>Quốc gia: {order?.country}</div>
-                    <div>Số điện thoại: {order?.phone}</div>
-                    <div>Post code: {order?.postCode}</div>
+                    <div>
+                      {i18nTranslations("Địa chỉ")}: {order?.address}
+                    </div>
+                    <div>
+                      {i18nTranslations("Thành phố")}: {order?.city}
+                    </div>
+                    <div>
+                      {i18nTranslations("Quốc gia")}: {order?.country}
+                    </div>
+                    <div>
+                      {i18nTranslations("Số điện thoại")}: {order?.phone}
+                    </div>
+                    <div>
+                      {i18nTranslations("Post code")}: {order?.postCode}
+                    </div>
                   </div>
                 </div>
               </div>
               <div className="border">
                 <div className="p-2">
-                  <h2 className="font-normal text-[18px]">Địa chỉ giao hàng</h2>
+                  <h2 className="font-normal text-[18px]">
+                    {i18nTranslations("Địa chỉ giao hàng")}
+                  </h2>
                   <div className="flex flex-col ">
-                    <div className=""> Địa chỉ: {order?.address}</div>
-                    <div>Thành phố: {order?.city}</div>
-                    <div>Quốc gia: {order?.country}</div>
-                    <div>Số điện thoại: {order?.phone}</div>
-                    <div>Post code: {order?.postCode}</div>
+                    <div>
+                      {i18nTranslations("Địa chỉ")}: {order?.address}
+                    </div>
+                    <div>
+                      {i18nTranslations("Thành phố")}: {order?.city}
+                    </div>
+                    <div>
+                      {i18nTranslations("Quốc gia")}: {order?.country}
+                    </div>
+                    <div>
+                      {i18nTranslations("Số điện thoại")}: {order?.phone}
+                    </div>
+                    <div>
+                      {i18nTranslations("Post code")}: {order?.postCode}
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
             <div className="mt-2 w-full">
               <div className="grid grid-cols-7 w-full font-bold py-2 border-b px-2">
-                <div className="col-span-2">Tên sản phẩm</div>
-                <div className="col-span-2">ID SP</div>
-                <div> Số lượng</div>
-                <div>Giá</div>
-                <div> Tạm tính</div>
+                <div className="col-span-2">
+                  {i18nTranslations("Tên sản phẩm")}
+                </div>
+                <div className="col-span-2">
+                  {i18nTranslations("Mã sản phẩm")}
+                </div>
+                <div>{i18nTranslations("Số lượng")}</div>
+                <div>{i18nTranslations("Giá")}</div>
+                <div>{i18nTranslations("Tạm tính")}</div>
               </div>
               {order?.products.map((product: any, idx: number) => (
                 <div
@@ -125,9 +163,13 @@ const UserOrders = () => {
               ))}
             </div>
             <div className="mt-10 w-full flex  flex-col items-end gap-2 text-[18px] font-normal">
-              <div>Tổng tạm tính: € {order?.totalAmount}</div>
-              <div>Phí vận chuyển: € 0</div>
-              <div>Tổng cộng: € {order?.totalAmount}</div>
+              <div>
+                {i18nTranslations("Tổng tạm tính")}: € {order?.totalAmount}
+              </div>
+              <div>{i18nTranslations("Phí vận chuyển")}: € 0</div>
+              <div>
+                {i18nTranslations("Tổng cộng")}: € {order?.totalAmount}
+              </div>
             </div>
           </div>
         </Modal>

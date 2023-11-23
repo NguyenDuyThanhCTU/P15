@@ -1,13 +1,23 @@
+"use client";
 import DisplayProduct from "@components/client/Home/DisplayProduct";
 import { getAllDataProps, getDataByTypeProps } from "@lib/get-data";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
-import React from "react";
+import { usePathname } from "next/navigation";
+import React, { useState } from "react";
 
-const HomePage = async () => {
-  const Data = await getAllDataProps("products");
-  const BlogData = await getDataByTypeProps("posts", "topic", "News");
+const HomePage = () => {
+  const [Data, setData] = useState<any>([]);
+  const [BlogData, setBlogData] = useState<any>([]);
+  getAllDataProps("products").then((data) => setData(data));
+  getDataByTypeProps("posts", "topic", "News").then((data) =>
+    setBlogData(data)
+  );
+  const i18nTranslations = useTranslations("Data");
+  const pathname = usePathname();
+  const path = pathname.split("/")[1];
 
-  const OutstandingProducts = Data.filter(
+  const OutstandingProducts = Data?.filter(
     (item: any) => item.topic === "Sản phẩm nổi bật"
   );
 
@@ -38,12 +48,12 @@ const HomePage = async () => {
           <div className=" p:w-auto p:mx-2 d:w-[1400px]  d:mx-auto relative">
             <div className="p:w-auto d:w-[1400px] absolute">
               <h2 className="font-normal text-[28px] text-white pt-8 pb-5">
-                Đối Tác
+                {i18nTranslations("Đối tác")}
               </h2>
               <div className=" grid w-full   grid-cols-4 p:gap-2 d:gap-20">
                 {partnerItem.map((item: any, idx: number) => (
                   <Link
-                    href={`/`}
+                    href={`/${path}`}
                     key={idx}
                     className="w-full bg-white border flex justify-center py-2"
                   >
@@ -59,11 +69,11 @@ const HomePage = async () => {
         <div>
           <div className=" p:w-auto p:mx-2 d:w-[1400px]  d:mx-auto ">
             <div className="bg-mainyellow text-white text-[25px] font-normal flex items-center h-12 w-max relative my-10">
-              <p className="pl-2 pr-16">Blog</p>
+              <p className="pl-2 pr-16">{i18nTranslations("Blog")}</p>
               <div className="bg-white h-20 w-10 absolute -right-3 -top-7 -rotate-45"></div>
             </div>
             <div className="grid p:grid-cols-2 d:grid-cols-3 gap-5  ">
-              {BlogData.slice(0, 3).map((item: any, idx: number) => {
+              {BlogData?.slice(0, 3).map((item: any, idx: number) => {
                 const content = item?.content;
                 const maxLength = 150;
 
@@ -74,7 +84,7 @@ const HomePage = async () => {
                 const markup = { __html: truncatedContent };
                 return (
                   <Link
-                    href={`/bai-viet/${item.url}`}
+                    href={`/${path}/bai-viet/${item.url}`}
                     key={idx}
                     className="cursor-pointer hover:shadow-2xl duration-300 mt-2"
                   >
@@ -100,10 +110,10 @@ const HomePage = async () => {
             </div>
             <div className="w-full flex justify-center py-10">
               <Link
-                href={`/blog`}
+                href={`/${path}/blog`}
                 className="py-3 px-10 uppercase border text-mainyellow border-mainyellow rounded-full cursor-pointer hover:text-white hover:bg-mainyellow duration-300 font-normal"
               >
-                Xem thêm
+                {i18nTranslations("Xem thêm")}
               </Link>
             </div>
           </div>

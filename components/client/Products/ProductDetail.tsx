@@ -7,13 +7,17 @@ import { Autoplay } from "swiper/modules";
 import { BiMinus, BiPlus } from "react-icons/bi";
 import { BsFillCartPlusFill } from "react-icons/bs";
 import { useData } from "@context/DataProviders";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useStateProvider } from "@context/StateProvider";
 import { FacebookProvider, Comments } from "react-facebook";
 import Link from "next/link";
 import { FiPhoneCall } from "react-icons/fi";
+import { useTranslations } from "next-intl";
 
 const ProductDetail = ({ Data, SimilarProduct }: any) => {
+  const i18nTranslations = useTranslations("Data");
+  const pathname = usePathname();
+  const path = pathname.split("/")[1];
   const [isCombo, setIsCombo] = useState(1);
   const { setCartItems, Sale, currentUser } = useData();
   const { setOpenCart, OpenCart } = useStateProvider();
@@ -28,7 +32,7 @@ const ProductDetail = ({ Data, SimilarProduct }: any) => {
     if (currentUser) {
       if (type === "buy") {
         setCartItems((prevItems: any) => [...prevItems, id]);
-        router.push("/gio-hang");
+        router.push(`/${path}/gio-hang`);
       } else {
         setCartItems((prevItems: any) => [
           ...prevItems,
@@ -37,6 +41,7 @@ const ProductDetail = ({ Data, SimilarProduct }: any) => {
         setOpenCart(true);
       }
     } else {
+      setIsModalOpen(true);
     }
   };
 
@@ -46,7 +51,9 @@ const ProductDetail = ({ Data, SimilarProduct }: any) => {
       label: "Chi tiết sản phẩm",
       children: (
         <>
-          <h3 className="text-[24px] font-semibold ">Chi tiết sản phẩm</h3>
+          <h3 className="text-[24px] font-semibold ">
+            {i18nTranslations("Thông tin sản phẩm")}
+          </h3>
           <div
             className=""
             dangerouslySetInnerHTML={{ __html: Data?.content }}
@@ -154,16 +161,16 @@ const ProductDetail = ({ Data, SimilarProduct }: any) => {
             <div className="w-[200px] ">
               {Data?.state ? (
                 <div className=" text-green-500 rounded-xl font-bold">
-                  Tình trạng: Còn hàng
+                  {i18nTranslations("Tình trạng: Còn hàng")}
                 </div>
               ) : (
                 <div className=" text-red-500  rounded-xl font-bold">
-                  Tình trạng: Hết hàng
+                  {i18nTranslations("Tình trạng: Hết hàng")}
                 </div>
               )}
             </div>
             <div className="flex gap-5">
-              <h3 className="py-1">Số lượng:</h3>
+              <h3 className="py-1">{i18nTranslations("Số lượng:")}</h3>
               <div className="border border-gray-500   h-12 rounded-sm w-[200px] ">
                 <div className="flex justify-between items-center h-full mx-5">
                   <BiMinus
@@ -190,24 +197,26 @@ const ProductDetail = ({ Data, SimilarProduct }: any) => {
                   className=" col-span-3 w-full text-[18px] text-primary bg-white font-normal border-mainyellow hover:border-orange-500 hover:text-orange-500 rounded-full text-mainyellow duration-300 border flex items-center  py-2 justify-center cursor-pointer gap-1"
                   onClick={() => HandleOrder(Data?.id, "add")}
                 >
-                  <p>Thêm vào giỏ</p>
+                  <p>{i18nTranslations("Thêm vào giỏ")}</p>
                 </div>
 
                 <div
                   className=" col-span-3 w-full text-[18px] text-primary bg-mainyellow border-mainyellow rounded-full text-white font-normal border hover:bg-orange-500 hover:border-orange-500 duration-300 flex items-center  py-2 justify-center cursor-pointer gap-1"
                   onClick={() => HandleOrder(Data?.id, "buy")}
                 >
-                  Mua ngay
+                  {i18nTranslations("Mua ngay")}
                 </div>
               </div>
             </>
 
             <div className="py-4 border-t border-b w-full font-light">
-              <h3>Mô tả</h3>
+              <h3>{i18nTranslations("Mô tả")}</h3>
               <div dangerouslySetInnerHTML={{ __html: Data?.describe }}></div>
             </div>
             <div className="flex gap-3 items-center font-light">
-              <span className="">Lượt xem {Data?.access}</span>
+              <span className="">
+                {i18nTranslations("Lượt xem")} {Data?.access}
+              </span>
             </div>
           </div>
         </div>
@@ -223,11 +232,11 @@ const ProductDetail = ({ Data, SimilarProduct }: any) => {
 
           <div className="col-span-1">
             <h3 className="text-mainred py-2 border-b-2 border-mainred uppercase font-bold">
-              Sản phẩm liên quan
+              {i18nTranslations("Sản phẩm liên quan")}
             </h3>
             <div>
               {SimilarProduct?.map((item: any, idx: number) => (
-                <Link href={`/chi-tiet-san-pham/${item.url}`}>
+                <Link href={`/${path}/chi-tiet-san-pham/${item.url}`}>
                   <div
                     className="flex gap-3 py-3 border-b hover:bg-gray-100 duration-300"
                     key={idx}
@@ -243,7 +252,7 @@ const ProductDetail = ({ Data, SimilarProduct }: any) => {
                       <div className="flex">
                         <div className="py-1 px-4 bg-mainred text-white flex gap-2 items-center text-[15px]">
                           <FiPhoneCall />
-                          <span>Chi tiết</span>
+                          <span>{i18nTranslations("Chi tiết")}</span>
                         </div>
                       </div>
                     </div>
@@ -268,20 +277,22 @@ const ProductDetail = ({ Data, SimilarProduct }: any) => {
         footer={null}
       >
         <div>
-          <h2 className="text-[24px] font-semibold">Đến trang đăng nhập</h2>
-          <p>Đăng nhập để mua hàng</p>
+          <h2 className="text-[24px] font-semibold">
+            {i18nTranslations("Đến trang đăng nhập")}
+          </h2>
+          <p>{i18nTranslations("Đăng nhập để mua hàng")}</p>
           <div className="flex w-full justify-center gap-5 mt-5">
             <div
               className="py-2 px-6 rounded-full border border-mainyellow cursor-pointer text-mainyellow duration-300 hover:border-orange-500 hover:text-orange-500"
               onClick={() => setIsModalOpen(false)}
             >
-              Hủy
+              {i18nTranslations("Hủy")}
             </div>
             <div
               className="py-2 px-6 rounded-full border border-mainyellow bg-mainyellow text-white duration-300 hover:bg-orange-500 hover:border-orange-500 cursor-pointer"
               onClick={() => router.push("/dang-nhap")}
             >
-              Đăng nhập
+              {i18nTranslations("Đăng nhập")}
             </div>
           </div>
         </div>

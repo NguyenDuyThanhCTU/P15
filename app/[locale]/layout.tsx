@@ -1,8 +1,15 @@
 import { notFound } from "next/navigation";
 import React from "react";
 import NextIntlProvider from "./NextIntlProvider";
+import { Metadata } from "next";
 // Can be imported from a shared config
-const locales = ["fr", "vi"];
+const locales = ["vi", "fr"];
+
+export const metadata: Metadata = {
+  title: "Home Page",
+  description: "This is a home page",
+  keywords: "home, page",
+};
 
 export default async function LocaleLayout({
   children,
