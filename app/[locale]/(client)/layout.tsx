@@ -21,12 +21,11 @@ const layout: React.FC<ClientLayoutProps> = ({ children }) => {
       <Header />
 
       <div className="p:mt-[84px] d:mt-[135px]">
-        {pathname === "/fr" ||
-          (pathname == "/vi" && (
-            <div className="">
-              <HomeSlide />
-            </div>
-          ))}
+        {(pathname === "/fr" || pathname == "/vi") && (
+          <div className="">
+            <HomeSlide />
+          </div>
+        )}
         <ProductTypeList />
         <div className="z-0 relative">{children}</div>
 

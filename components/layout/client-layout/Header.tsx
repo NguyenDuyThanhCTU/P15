@@ -70,7 +70,7 @@ const Header = () => {
   };
 
   useEffect(() => {
-    const sort = Products.filter((product: any) =>
+    const sort = Products?.filter((product: any) =>
       product.title.toLowerCase().includes(search.toLowerCase())
     );
     setSearchRs(sort);
@@ -153,10 +153,10 @@ const Header = () => {
                 <Select.Option value="fr">
                   <div className="flex items-center gap-2">
                     <img
-                      src="https://firebasestorage.googleapis.com/v0/b/taphoa-605ab.appspot.com/o/france.png?alt=media&token=87090e88-bcfc-443d-8050-e589ce33dcf4"
-                      alt="vietnam flag"
+                      src="https://firebasestorage.googleapis.com/v0/b/demo2512.appspot.com/o/germany.png?alt=media&token=68ca9b5b-f465-4b2d-aa87-7447b218aabc"
+                      alt="germany flag"
                     />
-                    <p>French</p>
+                    <p>Germany</p>
                   </div>
                 </Select.Option>
               </Select>
@@ -399,7 +399,7 @@ const Header = () => {
                         >
                           {i18nTranslations(item.label)}
                         </Link>
-                        {sort.length > 0 && (
+                        {sort?.length > 0 && (
                           <div
                             className={`${
                               openTypeMB === idx + 1 && "text-orange-500"

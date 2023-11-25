@@ -302,12 +302,7 @@ export const TypeProductItems = [
     image:
       "https://firebasestorage.googleapis.com/v0/b/taphoa-605ab.appspot.com/o/category_20210729151250_0.png?alt=media&token=797e56cf-afbf-4cea-a9e7-a8e131049a41",
   },
-  {
-    label: "Hải Sản Tươi Sống",
-    value: "hai-san-tuoi-song",
-    image:
-      "https://firebasestorage.googleapis.com/v0/b/taphoa-605ab.appspot.com/o/category_20210729151303_0.png?alt=media&token=b9d15971-d65b-4209-bf3e-4f9221e01594",
-  },
+
   {
     label: "Thực phẩm Việt Nam",
     value: "thuc-pham-viet-nam",

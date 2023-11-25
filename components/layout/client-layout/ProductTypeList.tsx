@@ -8,7 +8,7 @@ import { usePathname } from "next/navigation";
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import { Autoplay } from "swiper/modules";
 
 const ProductTypeList = () => {
   const { productTypes } = useData();
@@ -47,36 +47,34 @@ const ProductTypeList = () => {
                 );
 
                 return (
-                  <>
-                    <SwiperSlide key={idx}>
-                      <div className="flex flex-col gap-1 mx-2 border-[rgba(255,255,255,0)] border group  hover:border-orange-500 cursor-pointer  duration-300 bg-white">
-                        <div className="overflow-hidden p-1 ">
-                          <img
-                            src={item.image}
-                            alt="type product"
-                            className="hover:scale-105 duration-300"
-                          />
-                        </div>
-                        <Link
-                          href={`/${path}/san-pham/${item.value}`}
-                          className="text-center group-hover:scale-105 group-hover:font-semibold group-hover:text-orange-500 duration-300"
-                        >
-                          {i18nTranslations(item.label)}
-                        </Link>
-                        <div className="h-max p-2 group-hover:flex flex-col gap-2 hidden group-hover:bg-white z-20 relative ">
-                          {sort?.map((items: any, idx: number) => (
-                            <Link
-                              href={`/san-pham/${item.value}?type=${items.typeUrl}`}
-                              key={idx}
-                              className="hover:text-orange-500"
-                            >
-                              {items.type}
-                            </Link>
-                          ))}
-                        </div>
+                  <SwiperSlide key={idx}>
+                    <div className="flex flex-col gap-1 mx-2 border-[rgba(255,255,255,0)] border group  hover:border-orange-500 cursor-pointer  duration-300 bg-white">
+                      <div className="overflow-hidden p-1 ">
+                        <img
+                          src={item.image}
+                          alt="type product"
+                          className="hover:scale-105 duration-300"
+                        />
                       </div>
-                    </SwiperSlide>
-                  </>
+                      <Link
+                        href={`/${path}/san-pham/${item.value}`}
+                        className="text-center group-hover:scale-105 group-hover:font-semibold group-hover:text-orange-500 duration-300"
+                      >
+                        {i18nTranslations(item.label)}
+                      </Link>
+                      <div className="h-max p-2 group-hover:flex flex-col gap-2 hidden group-hover:bg-white z-20 relative ">
+                        {sort?.map((items: any, idx: number) => (
+                          <Link
+                            href={`/san-pham/${item.value}?type=${items.typeUrl}`}
+                            key={idx}
+                            className="hover:text-orange-500"
+                          >
+                            {items.type}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  </SwiperSlide>
                 );
               })}
             </div>
