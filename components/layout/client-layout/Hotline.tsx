@@ -18,14 +18,7 @@ function Hotline() {
           <FaFacebookF className="text-white text-[40px]" />
         </a>
       </div>
-      <div className="flex items-center ">
-        <a
-          href={`https://${SocialMedia[0]}`}
-          className="h-14 w-14 bg-white border border-blue-500 text-blue-500 flex items-center rounded-full justify-center"
-        >
-          <SiZalo className=" w-full h-full p-3" />
-        </a>
-      </div>
+
       <Link href={`tel:${ContactData.phone}`}>
         <div className="flex items-center">
           <div className="text-black font-semibold d:flex p:hidden justify-start items-center rounded-full w-[250px]  h-[60px] bg-white shadow-2xl absolute right-5">

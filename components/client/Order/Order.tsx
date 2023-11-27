@@ -9,7 +9,7 @@ import { useTranslations } from "next-intl";
 
 const Order = () => {
   const pathname = usePathname();
-  const path = pathname.split("/")[1];
+  const path = pathname?.split("/")[1];
   const i18nTranslations = useTranslations("Data");
   const [step, setStep] = React.useState(2);
   const [DataFormOrder, setDataFormOrder] = useState<any>();

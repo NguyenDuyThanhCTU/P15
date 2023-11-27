@@ -14,7 +14,7 @@ const ProductPage = async ({
   searchParams: { [key: string]: string | string[] | undefined };
 }) => {
   const pathname = usePathname();
-  const path = pathname.split("/")[1];
+  const path = pathname?.split("/")[1];
   const i18nTranslations = useTranslations("Data");
 
   const ProductType = await getDataByTypeProps(

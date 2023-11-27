@@ -79,8 +79,8 @@ const Header = () => {
   const router = useRouter();
   const pathname = usePathname();
   //remove /vi/ or /fr/ in pathname
-  let path = pathname.replace(/^\/(vi|fr)\//, "/");
-  const pathNav = pathname.split("/")[1];
+  let path = pathname?.replace(/^\/(vi|fr)\//, "/");
+  const pathNav = pathname?.split("/")[1];
   useEffect(() => {
     if (pathname.includes("/vi")) {
       setLanguage("vi");
@@ -196,7 +196,7 @@ const Header = () => {
             <div className="flex gap-10 text-[16px] uppercase font-normal ">
               {HeaderItems.map((item: any, idx: number) => (
                 <Link
-                  href={`/${pathNav}${item.value}`}
+                  href={`/${pathNav}/${item.value}`}
                   className="cursor-pointer hover:text-red-500 duration-300"
                   key={idx}
                 >
@@ -326,7 +326,7 @@ const Header = () => {
           </div>
           {openSearchMB && (
             <div className=" relative">
-              <div className="border rounded-full border-orange-500 flex items-center ">
+              <div className="border rounded-full border-orange-500 flex items-center bg-white ">
                 <div className=" pl-4 w-full  justify-between items-center grid grid-cols-7">
                   <input
                     type="text"

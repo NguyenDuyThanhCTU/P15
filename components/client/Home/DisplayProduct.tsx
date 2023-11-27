@@ -8,7 +8,7 @@ import { usePathname } from "next/navigation";
 const DisplayProduct = ({ Data, Topic }: any) => {
   const i18nTranslations = useTranslations("Data");
   const pathname = usePathname();
-  const path = pathname.split("/")[1];
+  const path = pathname?.split("/")[1];
   return (
     <div className="flex flex-col p:w-auto d:w-[1400px] mx-auto">
       <div className="bg-mainyellow text-white text-[25px] font-normal flex items-center h-12 w-max relative my-10">

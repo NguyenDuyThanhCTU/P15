@@ -2,6 +2,7 @@
 import { TypeProductItems } from "@assets/item";
 import { useData } from "@context/DataProviders";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React, { useState } from "react";
 import { AiOutlineRight, AiOutlineUnorderedList } from "react-icons/ai";
 import { BsArrowReturnRight, BsNewspaper } from "react-icons/bs";
@@ -9,6 +10,9 @@ import { BsArrowReturnRight, BsNewspaper } from "react-icons/bs";
 const Catelogy = () => {
   const [selected, setIsSelected] = useState<number>(0);
   const { ContactData, TradeMarkData, productTypes, Products } = useData();
+
+  const pathname = usePathname();
+  const path = pathname?.split("/")[1];
 
   const HandleSelect = (idx: number) => {
     if (selected === idx) {
@@ -67,7 +71,10 @@ const Catelogy = () => {
                     {" "}
                     <div className="flex flex-col text-gray-500 text-[14px] cursor-pointer">
                       {sort.map((item: any, idx: number) => (
-                        <Link key={idx} href={`/san-pham/${item.typeUrl}`}>
+                        <Link
+                          key={idx}
+                          href={`${path}/san-pham/${item.typeUrl}`}
+                        >
                           <div className="flex items-center gap-2 hover:underline ">
                             <BsArrowReturnRight />
                             <p>{item.type}</p>

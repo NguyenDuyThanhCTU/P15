@@ -18,7 +18,7 @@ const UserOrders = () => {
   };
   const i18nTranslations = useTranslations("Data");
   const pathname = usePathname();
-  const path = pathname.split("/")[1];
+  const path = pathname?.split("/")[1];
   return (
     <div>
       <div className="grid grid-cols-7 gap-3  py-3 px-2 font-normal bg-mainyellow text-white items-center">

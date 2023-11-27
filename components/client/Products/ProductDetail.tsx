@@ -17,7 +17,7 @@ import { useTranslations } from "next-intl";
 const ProductDetail = ({ Data, SimilarProduct }: any) => {
   const i18nTranslations = useTranslations("Data");
   const pathname = usePathname();
-  const path = pathname.split("/")[1];
+  const path = pathname?.split("/")[1];
   const [isCombo, setIsCombo] = useState(1);
   const { setCartItems, Sale, currentUser } = useData();
   const { setOpenCart, OpenCart } = useStateProvider();

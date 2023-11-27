@@ -11,7 +11,7 @@ import { usePathname } from "next/navigation";
 
 const Account = () => {
   const pathname = usePathname();
-  const path = pathname.split("/")[1];
+  const path = pathname?.split("/")[1];
   const i18nTranslations = useTranslations("Data");
   const { currentUser, Accounts } = useData();
   const [selected, setSelected] = React.useState(0);

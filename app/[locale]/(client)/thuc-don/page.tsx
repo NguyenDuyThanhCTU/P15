@@ -6,7 +6,7 @@ import React from "react";
 
 const ProductsPage = () => {
   const pathname = usePathname();
-  const path = pathname.split("/")[1];
+  const path = pathname?.split("/")[1];
   const i18nTranslations = useTranslations("Data");
   return (
     <>

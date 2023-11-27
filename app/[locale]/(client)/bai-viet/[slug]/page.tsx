@@ -10,7 +10,7 @@ import { AiOutlineClockCircle, AiOutlineUser } from "react-icons/ai";
 
 const PostDetailPage = async ({ params }: { params: { slug: string } }) => {
   const pathname = usePathname();
-  const path = pathname.split("/")[1];
+  const path = pathname?.split("/")[1];
   const i18nTranslations = useTranslations("Data");
   const Data = await getDataByTypeProps("posts", "url", params.slug);
   const DataCategory = await getDataByTypeProps(

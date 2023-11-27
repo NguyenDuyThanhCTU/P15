@@ -18,7 +18,7 @@ import { IoCartOutline } from "react-icons/io5";
 import { usePathname } from "next/navigation";
 const ProductCard = ({ Data }: any) => {
   const pathname = usePathname();
-  const path = pathname.split("/")[1];
+  const path = pathname?.split("/")[1];
   const i18nTranslations = useTranslations("Data");
 
   const [isModalOpen, setIsModalOpen] = React.useState(false);

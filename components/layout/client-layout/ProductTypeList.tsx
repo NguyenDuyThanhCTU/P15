@@ -9,13 +9,14 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Autoplay } from "swiper/modules";
+import { useRouter } from "next/navigation";
 
 const ProductTypeList = () => {
   const { productTypes } = useData();
   const pathname = usePathname();
-  const path = pathname.split("/")[1];
+  const path = pathname?.split("/")[1];
   const i18nTranslations = useTranslations("Data");
-
+  const router = useRouter();
   return (
     <div>
       <div className="p:w-auto p:mx-2 d:w-[1300px] d:mx-auto pt-10 p:pb-52 d:pb-96 z-10 relative">
@@ -27,11 +28,56 @@ const ProductTypeList = () => {
           <div className="w-14 h-[1px] bg-black"></div>
         </div>
 
-        <div className="mt-4 absolute p:w-[100vw] d:w-[1300px]">
+        <div className="mt-4   absolute d:flex p:hidden">
+          {TypeProductItems.map((item: any, idx: number) => {
+            const sort = productTypes?.filter(
+              (type: any) => type.parent === item.label
+            );
+
+            return (
+              <div
+                key={idx}
+                className="flex flex-col gap-1 mx-2 border-[rgba(255,255,255,0)] border group  hover:border-orange-500 cursor-pointer  duration-300 bg-white"
+              >
+                <div className="overflow-hidden p-1 ">
+                  <img
+                    src={item.image}
+                    alt="type product"
+                    className="hover:scale-105 duration-300"
+                  />
+                </div>
+                <Link
+                  href={`/${path}/san-pham/${item.value}`}
+                  onClick={() => router.push(`/${path}/san-pham/${item.value}`)}
+                  className="text-center group-hover:scale-105 group-hover:font-semibold group-hover:text-orange-500 duration-300"
+                >
+                  {i18nTranslations(item.label)}
+                </Link>
+                <div className="h-max p-2 group-hover:flex flex-col gap-2 hidden group-hover:bg-white z-20 relative ">
+                  {sort?.map((items: any, idx: number) => (
+                    <Link
+                      onClick={() =>
+                        router.push(
+                          `/${path}/san-pham/${item.value}?type=${items.typeUrl}`
+                        )
+                      }
+                      href={`${path}/san-pham/${item.value}?type=${items.typeUrl}`}
+                      key={idx}
+                      className="hover:text-orange-500"
+                    >
+                      {items.type}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+        <div className="mt-4 absolute p:w-[100vw] d:w-[1300px] p:block d:hidden">
           <Swiper
             loop={true}
             centeredSlides={true}
-            slidesPerView={4}
+            slidesPerView={5}
             slidesPerGroup={1}
             autoplay={{
               delay: 2500,
@@ -58,6 +104,9 @@ const ProductTypeList = () => {
                       </div>
                       <Link
                         href={`/${path}/san-pham/${item.value}`}
+                        onClick={() =>
+                          router.push(`/${path}/san-pham/${item.value}`)
+                        }
                         className="text-center group-hover:scale-105 group-hover:font-semibold group-hover:text-orange-500 duration-300"
                       >
                         {i18nTranslations(item.label)}
@@ -65,7 +114,12 @@ const ProductTypeList = () => {
                       <div className="h-max p-2 group-hover:flex flex-col gap-2 hidden group-hover:bg-white z-20 relative ">
                         {sort?.map((items: any, idx: number) => (
                           <Link
-                            href={`/san-pham/${item.value}?type=${items.typeUrl}`}
+                            onClick={() =>
+                              router.push(
+                                `/${path}/san-pham/${item.value}?type=${items.typeUrl}`
+                              )
+                            }
+                            href={`/${path}/san-pham/${item.value}?type=${items.typeUrl}`}
                             key={idx}
                             className="hover:text-orange-500"
                           >

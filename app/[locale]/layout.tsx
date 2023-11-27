@@ -6,9 +6,8 @@ import { Metadata } from "next";
 const locales = ["vi", "fr"];
 
 export const metadata: Metadata = {
-  title: "Home Page",
-  description: "This is a home page",
-  keywords: "home, page",
+  title: "Á Châu",
+  description: "Asia Lebensmittel",
 };
 
 export default async function LocaleLayout({

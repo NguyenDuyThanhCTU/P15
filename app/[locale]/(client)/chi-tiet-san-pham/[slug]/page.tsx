@@ -10,6 +10,7 @@ const ProductDetailPage = async ({ params }: { params: { slug: string } }) => {
     "parentUrl",
     Data[0].parentUrl
   );
+
   return (
     <div>
       <div className="d:w-[1300px] p:mx-2 d:mx-auto p:w-auto">
@@ -22,7 +23,7 @@ const ProductDetailPage = async ({ params }: { params: { slug: string } }) => {
           </Link>
           <p className="text-[14px]">/</p>
           <Link
-            href={`/san-pham/${Data[0].parentUrl}`}
+            href={`/vi/san-pham/${Data[0].parentUrl}`}
             className="hover:text-blue-700 cursor-pointer underline"
           >
             {Data[0].parent}

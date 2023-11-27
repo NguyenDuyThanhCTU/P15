@@ -15,11 +15,18 @@ const HomePage = () => {
   );
   const i18nTranslations = useTranslations("Data");
   const pathname = usePathname();
-  const path = pathname.split("/")[1];
+  const path = pathname?.split("/")[1];
 
   const OutstandingProducts = Data?.filter(
     (item: any) => item.topic === "Sản phẩm nổi bật"
   );
+  const PromotionalProducts = Data?.filter(
+    (item: any) => item.topic === "Sản phẩm khuyến mãi"
+  );
+  const SellingProducts = Data?.filter(
+    (item: any) => item.topic === "Sản phẩm bán chạy"
+  );
+  const NewProduct = Data?.filter((item: any) => item.topic === "Sản phẩm mới");
 
   const partnerItem = [
     {
@@ -40,10 +47,10 @@ const HomePage = () => {
       <div className=" ">
         <DisplayProduct Data={OutstandingProducts} Topic="Sản phẩm nổi bật" />
         <DisplayProduct
-          Data={OutstandingProducts}
+          Data={PromotionalProducts}
           Topic="Sản phẩm khuyến mãi"
         />
-        <DisplayProduct Data={OutstandingProducts} Topic="Sản phẩm bán chạy" />
+        <DisplayProduct Data={SellingProducts} Topic="Sản phẩm bán chạy" />
         <div className="bg-redPrimmary w-full h-[180px] mt-14 mb-20 ">
           <div className=" p:w-auto p:mx-2 d:w-[1400px]  d:mx-auto relative">
             <div className="p:w-auto d:w-[1400px] absolute">
@@ -64,7 +71,7 @@ const HomePage = () => {
             </div>
           </div>
         </div>
-        <DisplayProduct Data={OutstandingProducts} Topic="Sản phẩm mới" />
+        <DisplayProduct Data={NewProduct} Topic="Sản phẩm mới" />
 
         <div>
           <div className=" p:w-auto p:mx-2 d:w-[1400px]  d:mx-auto ">

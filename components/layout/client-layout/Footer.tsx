@@ -11,7 +11,7 @@ const Footer = () => {
   const { ContactData } = useData();
   const i18nTranslations = useTranslations("Data");
   const pathname = usePathname();
-  const path = pathname.split("/")[1];
+  const path = pathname?.split("/")[1];
   return (
     <div>
       <div className="p:w-auto p:mx-2 d:w-[1300px] d:mx-auto grid p:grid-cols-1   d:grid-cols-3 gap-3 py-14">
