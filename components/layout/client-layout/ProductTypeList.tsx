@@ -16,7 +16,6 @@ const ProductTypeList = () => {
   const pathname = usePathname();
   const path = pathname?.split("/")[1];
   const i18nTranslations = useTranslations("Data");
-  const router = useRouter();
   return (
     <div>
       <div className="p:w-auto p:mx-2 d:w-[1300px] d:mx-auto pt-10 p:pb-52 d:pb-96 z-10 relative">
@@ -37,7 +36,7 @@ const ProductTypeList = () => {
             return (
               <div
                 key={idx}
-                className="flex flex-col gap-1 mx-2 border-[rgba(255,255,255,0)] border group  hover:border-orange-500 cursor-pointer  duration-300 bg-white"
+                className={`flex flex-col gap-1 mx-2 border-[rgba(255,255,255,0)] border group  hover:border-orange-500 cursor-pointer  duration-300 bg-white`}
               >
                 <div className="overflow-hidden p-1 ">
                   <img
@@ -47,21 +46,17 @@ const ProductTypeList = () => {
                   />
                 </div>
                 <Link
-                  href={`/${path}/san-pham/${item.value}`}
-                  onClick={() => router.push(`/${path}/san-pham/${item.value}`)}
-                  className="text-center group-hover:scale-105 group-hover:font-semibold group-hover:text-orange-500 duration-300"
+                  href={`/vi/san-pham/${item.value}`}
+                  className={`text-center group-hover:scale-105 group-hover:font-semibold group-hover:text-orange-500 duration-300`}
                 >
                   {i18nTranslations(item.label)}
                 </Link>
-                <div className="h-max p-2 group-hover:flex flex-col gap-2 hidden group-hover:bg-white z-20 relative ">
+                <div
+                  className={`h-max p-2 group-hover:flex flex-col gap-2 hidden group-hover:bg-white z-20 relative `}
+                >
                   {sort?.map((items: any, idx: number) => (
                     <Link
-                      onClick={() =>
-                        router.push(
-                          `/${path}/san-pham/${item.value}?type=${items.typeUrl}`
-                        )
-                      }
-                      href={`${path}/san-pham/${item.value}?type=${items.typeUrl}`}
+                      href={`/${path}/san-pham/${item.value}?type=${items.typeUrl}`}
                       key={idx}
                       className="hover:text-orange-500"
                     >
@@ -77,7 +72,7 @@ const ProductTypeList = () => {
           <Swiper
             loop={true}
             centeredSlides={true}
-            slidesPerView={5}
+            slidesPerView={3}
             slidesPerGroup={1}
             autoplay={{
               delay: 2500,
@@ -94,7 +89,7 @@ const ProductTypeList = () => {
 
                 return (
                   <SwiperSlide key={idx}>
-                    <div className="flex flex-col gap-1 mx-2 border-[rgba(255,255,255,0)] border group  hover:border-orange-500 cursor-pointer  duration-300 bg-white">
+                    <div className="flex flex-col gap-1 mx-2 border-[rgba(255,255,255,0)] border group  hover:border-orange-500 cursor-pointer  duration-300 bg-none">
                       <div className="overflow-hidden p-1 ">
                         <img
                           src={item.image}
@@ -102,29 +97,31 @@ const ProductTypeList = () => {
                           className="hover:scale-105 duration-300"
                         />
                       </div>
-                      <Link
-                        href={`/${path}/san-pham/${item.value}`}
+                      <div
                         onClick={() =>
-                          router.push(`/${path}/san-pham/${item.value}`)
+                          window.open(
+                            `/${path}/san-pham/${item.value}`,
+                            "_self"
+                          )
                         }
-                        className="text-center group-hover:scale-105 group-hover:font-semibold group-hover:text-orange-500 duration-300"
+                        className="text-center font-semibold group-hover:scale-105 group-hover:font-semibold group-hover:text-orange-500 duration-300 "
                       >
                         {i18nTranslations(item.label)}
-                      </Link>
+                      </div>
                       <div className="h-max p-2 group-hover:flex flex-col gap-2 hidden group-hover:bg-white z-20 relative ">
                         {sort?.map((items: any, idx: number) => (
-                          <Link
+                          <div
                             onClick={() =>
-                              router.push(
-                                `/${path}/san-pham/${item.value}?type=${items.typeUrl}`
+                              window.open(
+                                `/${path}/san-pham/${item.value}?type=${items.typeUrl}`,
+                                "_self"
                               )
                             }
-                            href={`/${path}/san-pham/${item.value}?type=${items.typeUrl}`}
                             key={idx}
                             className="hover:text-orange-500"
                           >
                             {items.type}
-                          </Link>
+                          </div>
                         ))}
                       </div>
                     </div>

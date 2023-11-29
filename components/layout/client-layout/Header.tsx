@@ -186,7 +186,7 @@ const Header = () => {
         </div>
         <div className="shadow-md bg-white">
           <div className="h-24 flex justify-between w-[1300px] mx-auto items-center">
-            <Link href={`${pathNav}/`} className="h-24 p-3">
+            <Link href={`/`} className="h-24 p-3">
               <img
                 src={TradeMarkData.websiteLogo}
                 alt="logo"
@@ -292,10 +292,10 @@ const Header = () => {
                   <Select.Option value="fr">
                     <div className="flex items-center gap-2">
                       <img
-                        src="https://firebasestorage.googleapis.com/v0/b/taphoa-605ab.appspot.com/o/france.png?alt=media&token=87090e88-bcfc-443d-8050-e589ce33dcf4"
-                        alt="vietnam flag"
+                        src="https://firebasestorage.googleapis.com/v0/b/demo2512.appspot.com/o/germany.png?alt=media&token=68ca9b5b-f465-4b2d-aa87-7447b218aabc"
+                        alt="germany flag"
                       />
-                      <p>French</p>
+                      <p>Germany</p>
                     </div>
                   </Select.Option>
                 </Select>

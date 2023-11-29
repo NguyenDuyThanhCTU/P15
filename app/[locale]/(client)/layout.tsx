@@ -28,7 +28,11 @@ const layout: React.FC<ClientLayoutProps> = ({ children }) => {
             <HomeSlide />
           </div>
         )}
-        <ProductTypeList />
+        <div className="relative bg-no-repeat bg-cover z-50 bg-[url(https://foodindustryexecutive.com/wp-content/uploads/2022/06/bigstock-Food-Background-Food-Concept-W-445520756.jpg)]">
+          <div className="w-full h-full bg-[rgba(255,255,255,0.76)]">
+            <ProductTypeList />
+          </div>
+        </div>
         <div className="z-0 relative">{children}</div>
 
         <TopFooter />

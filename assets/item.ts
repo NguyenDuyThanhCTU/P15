@@ -300,44 +300,44 @@ export const TypeProductItems = [
     label: "Hàng Đông Lạnh",
     value: "hang-dong-lanh",
     image:
-      "https://firebasestorage.googleapis.com/v0/b/taphoa-605ab.appspot.com/o/category_20210729151250_0.png?alt=media&token=797e56cf-afbf-4cea-a9e7-a8e131049a41",
+      "https://firebasestorage.googleapis.com/v0/b/asiachau-2b968.appspot.com/o/1.jpg?alt=media&token=3f7a2961-2b45-48c4-ae89-39d576c30a14",
   },
 
   {
     label: "Thực phẩm Việt Nam",
     value: "thuc-pham-viet-nam",
     image:
-      "https://firebasestorage.googleapis.com/v0/b/taphoa-605ab.appspot.com/o/category_20210729151315_0.png?alt=media&token=70925ed8-b2fd-41fc-8f82-cfcb715da692",
+      "https://firebasestorage.googleapis.com/v0/b/asiachau-2b968.appspot.com/o/2.jpg?alt=media&token=597915b6-f0c1-437d-b4bc-0c41a67146f6",
   },
   {
     label: "Rau Củ Quả",
     value: "rau-cu-qua",
     image:
-      "https://firebasestorage.googleapis.com/v0/b/taphoa-605ab.appspot.com/o/category_20210729151331_0.png?alt=media&token=03174078-0864-4c6b-b6e1-8612985e3b59",
+      "https://firebasestorage.googleapis.com/v0/b/asiachau-2b968.appspot.com/o/3.jpg?alt=media&token=3a5550b7-9dec-491b-ad6e-d4a1520a9f41",
   },
   {
     label: "Đồ Ăn Vặt",
     value: "do-an-vat",
     image:
-      "https://firebasestorage.googleapis.com/v0/b/taphoa-605ab.appspot.com/o/category_20210729151331_0.png?alt=media&token=03174078-0864-4c6b-b6e1-8612985e3b59",
+      "https://firebasestorage.googleapis.com/v0/b/asiachau-2b968.appspot.com/o/-%20High%20Quality%20Meat%20-.jpg?alt=media&token=86318e72-9c34-47ca-b5b5-deb6d0c34103",
   },
   {
     label: "Nước Uống",
     value: "nuoc-uong",
     image:
-      "https://firebasestorage.googleapis.com/v0/b/taphoa-605ab.appspot.com/o/category_20210729151342_0.png?alt=media&token=8792cda1-7f18-4707-b213-fc1f2c9046f7",
+      "https://firebasestorage.googleapis.com/v0/b/asiachau-2b968.appspot.com/o/4.jpg?alt=media&token=fdd5eea4-bdce-4253-8972-2c2fdb47ee89",
   },
   {
     label: "Thực Phẩm Hàng Thái Nhật",
     value: "thuc-pham-hang-thai-nhat",
     image:
-      "https://firebasestorage.googleapis.com/v0/b/taphoa-605ab.appspot.com/o/category_20210729151408_0.png?alt=media&token=1eaddc53-8e6f-4199-8a92-2dfa83605197",
+      "https://firebasestorage.googleapis.com/v0/b/asiachau-2b968.appspot.com/o/5.jpg?alt=media&token=562e63f5-48b6-4f38-a4a3-0d378e08b06b",
   },
   {
     label: "Tiện Ích Gia Đình",
     value: "tien-ich-gia-dinh",
     image:
-      "https://firebasestorage.googleapis.com/v0/b/taphoa-605ab.appspot.com/o/category_20210729151420_0.png?alt=media&token=8c81d8d3-b549-4492-8c8b-48cd92c9aa56",
+      "https://firebasestorage.googleapis.com/v0/b/asiachau-2b968.appspot.com/o/6.jpg?alt=media&token=73af53a1-64d4-48cd-8845-c607036ed19a",
   },
 ];
 

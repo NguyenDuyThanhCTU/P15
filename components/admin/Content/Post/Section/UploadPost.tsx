@@ -78,6 +78,7 @@ const UploadPost: React.FC = () => {
   const HandleChange = (value: string) => {
     setTopic(value);
   };
+  console.log(Topic);
 
   return (
     <div className="flex-[35%] bg-white">
@@ -121,7 +122,7 @@ const UploadPost: React.FC = () => {
                   <option
                     key={idx}
                     className=" outline-none capitalize bg-white text-gray-700 text-md p-2 hover:bg-slate-300"
-                    value={item.label}
+                    value={item.value}
                   >
                     {item.label}
                   </option>
