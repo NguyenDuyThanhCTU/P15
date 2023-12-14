@@ -6,46 +6,35 @@ import Input from "../Input";
 import { useStateProvider } from "@context/StateProvider";
 import { useData } from "@context/DataProviders";
 import { addDocument } from "@config/Services/Firebase/FireStoreDB";
-
-interface BranchData {
-  name: string;
-  address: string;
-  hotline: string;
-  email: string;
-  worktime: string;
-}
+import { FaCloudUploadAlt } from "react-icons/fa";
+import { uploadImage } from "@components/items/server-items/Handle";
 
 const AddBranch: React.FC = () => {
-  const [BranchName, setBranchName] = useState<string>("");
-  const [BranchAddress, setBranchAddress] = useState<string>("");
-  const [BranchHotline, setBranchHotline] = useState<string>("");
-  const [BranchEmail, setBranchEmail] = useState<string>("");
-  const [BranchWorktime, setBranchWorktime] = useState<string>("");
+  const [Title, setTitle] = useState<string>("");
+  const [image, setImage] = useState<any>("");
+  const [imageUrl, setImageUrl] = useState<any>("");
+
   const { setIsRefetch, setDropDown } = useStateProvider();
 
-  const handleDiscard = () => {
-    setBranchName("");
-    setBranchAddress("");
-    setBranchHotline("");
-    setBranchEmail("");
-    setBranchWorktime("");
+  const HandleUploadImage = (e: any, locate: string) => {
+    uploadImage(e, locate).then((data: any) => {
+      setImageUrl(data);
+    });
   };
+  const handleDiscard = () => {};
 
   const HandleSubmit = () => {
-    if (!BranchName || !BranchAddress || !BranchHotline) {
+    if (Title === "" || (image === "" && imageUrl === "")) {
       notification.error({
         message: "Lỗi !",
         description: "Vui lòng nhập đầy đủ thông tin!",
       });
     } else {
-      const data: BranchData = {
-        name: BranchName,
-        address: BranchAddress,
-        hotline: BranchHotline,
-        email: BranchEmail,
-        worktime: BranchWorktime,
+      const data = {
+        name: Title,
+        image: image ? image : imageUrl,
       };
-
+      console.log(data);
       addDocument("branches", data).then(() => {
         notification.success({
           message: "Thành công!",
@@ -68,48 +57,51 @@ const AddBranch: React.FC = () => {
         <div className="items-center justify-center  w-full flex  ">
           <div className="flex w-[56vw]  justify-center gap-4 flex-col items-center ">
             <p className="text-2xl font-bold text-center mb-5 uppercase">
-              Thêm chi nhánh
+              Thêm đối tác
             </p>
 
             <div className="flex gap-5 justify-center w-[50vw] mx-auto">
               <div className="flex-1">
                 <Input
-                  text={`Tên chi nhánh`}
-                  Value={BranchName}
-                  setValue={setBranchName}
+                  text={`Tên đối tác`}
+                  Value={Title}
+                  setValue={(e: any) => setTitle(e.target.value)}
                   Input={true}
                   PlaceHolder=""
                 />
                 <Input
-                  text={`Địa chỉ`}
-                  Value={BranchAddress}
-                  setValue={setBranchAddress}
-                  Input={true}
-                  PlaceHolder=""
-                />
-                <Input
-                  text={`Hotline`}
-                  Value={BranchHotline}
-                  setValue={setBranchHotline}
-                  Input={true}
-                  PlaceHolder=""
-                />
-                <Input
-                  text={`Email`}
-                  Value={BranchEmail}
-                  setValue={setBranchEmail}
+                  text={`Link Logo Đối tác`}
+                  Value={image}
+                  setValue={(e: any) => setImage(e.target.value)}
                   Input={true}
                   PlaceHolder=""
                 />
               </div>
               <div className="flex-1">
-                <Input
-                  text={`Giờ làm việc`}
-                  Value={BranchWorktime}
-                  setValue={setBranchWorktime}
-                  Input={true}
-                  PlaceHolder=""
-                />
+                <label className="cursor-pointer">
+                  <div className="flex flex-col items-center justify-center h-full">
+                    <div className="flex flex-col justify-center items-center">
+                      <p className="font-bold text-xl">
+                        <FaCloudUploadAlt className="text-gray-300 text-6xl" />
+                      </p>
+                      <p className="text-xl font-semibold">
+                        Chọn Logo để tải lên
+                      </p>
+                    </div>
+                    <p className="text-gray-400  text-center mt-10 text-sm leading-10">
+                      Định dạng jpg hoặc png <br />
+                    </p>
+                    <p className="bg-[#0047AB] hover:bg-[#0000FF] text-center mt-8 rounded text-white text-md font-medium p-2 w-52 outline-none">
+                      Chọn từ thiết bị
+                    </p>
+                  </div>
+                  <input
+                    type="file"
+                    name="upload-video"
+                    className="w-0 h-0"
+                    onChange={(e) => HandleUploadImage(e, "slides")}
+                  />
+                </label>
               </div>
             </div>
             <div className="flex gap-6 mt-10">

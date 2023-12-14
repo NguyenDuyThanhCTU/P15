@@ -36,7 +36,7 @@ const ProductTypeList = () => {
             return (
               <div
                 key={idx}
-                className={`flex flex-col gap-1 mx-2 border-[rgba(255,255,255,0)] border group  hover:border-orange-500 cursor-pointer  duration-300 bg-white`}
+                className={`flex flex-col gap-1 mx-2 border-[rgba(255,255,255,0)] border group  hover:border-orange-500 cursor-pointer  duration-300 `}
               >
                 <div className="overflow-hidden p-1 ">
                   <img
@@ -47,12 +47,12 @@ const ProductTypeList = () => {
                 </div>
                 <Link
                   href={`/vi/san-pham/${item.value}`}
-                  className={`text-center group-hover:scale-105 group-hover:font-semibold group-hover:text-orange-500 duration-300`}
+                  className={`text-center  group-hover:font-semibold group-hover:text-orange-500 duration-300`}
                 >
                   {i18nTranslations(item.label)}
                 </Link>
                 <div
-                  className={`h-max p-2 group-hover:flex flex-col gap-2 hidden group-hover:bg-white z-20 relative `}
+                  className={`h-max p-2 font-normal text-black group-hover:flex flex-col gap-2 hidden bg-none z-20 relative `}
                 >
                   {sort?.map((items: any, idx: number) => (
                     <Link

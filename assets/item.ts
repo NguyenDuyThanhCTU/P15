@@ -95,7 +95,7 @@ export const ProductSidebarAdmin = [
     icon: "AiOutlineUnorderedList",
   },
   {
-    name: "Chi nhánh",
+    name: "Đối tác",
     icon: "CgListTree",
   },
 ];
@@ -322,7 +322,7 @@ export const TypeProductItems = [
       "https://firebasestorage.googleapis.com/v0/b/asiachau-2b968.appspot.com/o/-%20High%20Quality%20Meat%20-.jpg?alt=media&token=86318e72-9c34-47ca-b5b5-deb6d0c34103",
   },
   {
-    label: "Nước Uống",
+    label: "Đồ Uống",
     value: "nuoc-uong",
     image:
       "https://firebasestorage.googleapis.com/v0/b/asiachau-2b968.appspot.com/o/4.jpg?alt=media&token=fdd5eea4-bdce-4253-8972-2c2fdb47ee89",
