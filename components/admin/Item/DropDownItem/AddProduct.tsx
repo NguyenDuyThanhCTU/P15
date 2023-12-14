@@ -34,7 +34,7 @@ const AddProduct = ({}) => {
   const [topic, setTopic] = useState<any>();
 
   const { setDropDown, setIsRefetch } = useStateProvider();
-  const { productTypes } = useData();
+  const { productTypes, Products } = useData();
   const [open, setOpen] = useState(false);
   const [openDescription, setOpenDescription] = useState(false);
   const { Option } = Select;
@@ -79,12 +79,17 @@ const AddProduct = ({}) => {
   };
 
   const HandleSubmit = () => {
+    //get lastest id of product in database
+
+    const lastestId = Products[Products.length - 1];
+    console.log("lastestId");
     if (!Title) {
       notification["error"]({
         message: "Lỗi !!!",
         description: `Vui lòng bổ sung đầy đủ thông tin !`,
       });
     } else {
+      const pId = lastestId.pId + 1;
       const data: any = {
         title: Title,
         content: Content,
@@ -96,6 +101,7 @@ const AddProduct = ({}) => {
         parent: isParent,
         parentUrl: parentUrl,
         state: "Còn hàng",
+        pId: pId,
         url: titleUrl,
         sale: {
           discount: 0,

@@ -304,8 +304,8 @@ export const TypeProductItems = [
   },
 
   {
-    label: "Thực phẩm Việt Nam",
-    value: "thuc-pham-viet-nam",
+    label: "Thực Phẩm Châu Á",
+    value: "thuc-pham-chau-a",
     image:
       "https://firebasestorage.googleapis.com/v0/b/asiachau-2b968.appspot.com/o/2.jpg?alt=media&token=597915b6-f0c1-437d-b4bc-0c41a67146f6",
   },
@@ -327,12 +327,7 @@ export const TypeProductItems = [
     image:
       "https://firebasestorage.googleapis.com/v0/b/asiachau-2b968.appspot.com/o/4.jpg?alt=media&token=fdd5eea4-bdce-4253-8972-2c2fdb47ee89",
   },
-  {
-    label: "Thực Phẩm Hàng Thái Nhật",
-    value: "thuc-pham-hang-thai-nhat",
-    image:
-      "https://firebasestorage.googleapis.com/v0/b/asiachau-2b968.appspot.com/o/5.jpg?alt=media&token=562e63f5-48b6-4f38-a4a3-0d378e08b06b",
-  },
+
   {
     label: "Tiện Ích Gia Đình",
     value: "tien-ich-gia-dinh",

@@ -76,7 +76,10 @@ const ProductCard = ({ Data }: any) => {
           {Data.title}
         </Link>
         <div className="mt-5 flex flex-col gap-3">
-          <p className="font-normal ">€ {Data.price}</p>
+          <div className="flex flex-col justify-start items-start">
+            <div className="bg-gray-200 rounded-lg px-2">#{Data.pId}</div>
+            <p className="font-normal text-center w-full">€ {Data.price}</p>
+          </div>
           <div className="grid grid-cols-4 justify-between items-center ">
             <div
               className={`hover:scale-110 duration-300 ${

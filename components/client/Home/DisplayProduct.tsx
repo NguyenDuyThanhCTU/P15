@@ -11,9 +11,11 @@ const DisplayProduct = ({ Data, Topic }: any) => {
   const path = pathname?.split("/")[1];
   return (
     <div className="flex flex-col p:w-auto d:w-[1400px] mx-auto">
-      <div className="bg-mainyellow text-white text-[25px] font-normal flex items-center h-12 w-max relative my-10">
-        <p className="pl-2 pr-16">{i18nTranslations(Topic)}</p>
-        <div className="bg-white h-20 w-10 absolute -right-3 -top-7 -rotate-45"></div>
+      <div className="h-[48px] my-10 border-b-2 border-[#3ee391]">
+        <div className="bg-[#3ee391] text-white text-[25px] font-normal flex items-center h-12 w-max relative">
+          <p className="pl-2 pr-16">{i18nTranslations(Topic)}</p>
+          <div className="bg-white h-20 w-10 absolute -right-3 -top-7 -rotate-45"></div>
+        </div>
       </div>
       <div className="grid  grid-cols-5 gap-2 ">
         {Topic === "Sản phẩm khuyến mãi" ? (
